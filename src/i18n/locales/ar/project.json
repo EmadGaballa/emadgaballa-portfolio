@@ -1,0 +1,21 @@
+{
+  "overview": "نظرة عامة",
+  "problem": "المشكلة",
+  "objectives": "الأهداف",
+  "designProcess": "عملية التصميم",
+  "architecture": "القرارات الهندسية",
+  "techStack": "التقنيات المستخدمة",
+  "challenges": "التحديات",
+  "solutions": "الحلول",
+  "features": "<em>الميزات</em> الرئيسية",
+  "gallery": "معرض الصور",
+  "lessons": "الدروس المستفادة",
+  "future": "التحسينات المستقبلية",
+  "links": "روابط المشروع",
+  "liveDemo": "عرض مباشر",
+  "viewGitHub": "عرض على GitHub",
+  "backToWork": "العودة إلى المشاريع",
+  "type": "النوع",
+  "year": "السنة",
+  "solo": "مشروع فردي"
+}

@@ -1,0 +1,21 @@
+{
+  "overview": "Overview",
+  "problem": "The Problem",
+  "objectives": "Objectives",
+  "designProcess": "Design Process",
+  "architecture": "Architecture Decisions",
+  "techStack": "Technology Stack",
+  "challenges": "Challenges",
+  "solutions": "Solutions",
+  "features": "Key <em>Features</em>",
+  "gallery": "Gallery",
+  "lessons": "Lessons Learned",
+  "future": "Future Improvements",
+  "links": "Project Links",
+  "liveDemo": "Live Demo",
+  "viewGitHub": "View on GitHub",
+  "backToWork": "Back to Projects",
+  "type": "Type",
+  "year": "Year",
+  "solo": "Solo Project"
+}

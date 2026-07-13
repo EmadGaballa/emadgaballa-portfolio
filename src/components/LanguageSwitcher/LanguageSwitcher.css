@@ -1,0 +1,48 @@
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.lang-switcher:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lang-switcher-track {
+  display: flex;
+  align-items: center;
+  min-width: 24px;
+}
+
+.lang-switcher-label {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.lang-switcher-separator {
+  color: var(--border);
+}
+
+.lang-switcher-other {
+  color: var(--text-3);
+  transition: color 0.3s;
+}
+
+.lang-switcher-other.active {
+  color: var(--accent);
+}
+
+[dir="rtl"] .lang-switcher {
+  flex-direction: row-reverse;
+}

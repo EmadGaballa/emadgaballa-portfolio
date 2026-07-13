@@ -1,0 +1,11 @@
+{
+  "label": "About Me",
+  "heading": "\"Obsessed with<br /><em>craft & detail</em>\"",
+  "paragraph1": "I'm a full-stack JavaScript developer focused on building scalable web applications with clean architecture, maintainable code, and strong user experience. I enjoy working across both frontend and backend to turn ideas into complete, production-ready products.",
+  "paragraph2": "I build responsive and performant interfaces using modern frontend tools, while also designing and implementing backend systems, APIs, authentication flows, and database structures that power real-world applications.",
+  "paragraph3": "Outside of development, I focus on improving system design understanding, exploring backend architecture patterns, and refining the way I build scalable and efficient software systems.",
+  "stat1": "Experience",
+  "stat2": "Responsive & Optimized",
+  "stat3": "Client Satisfaction",
+  "stat4": "Attention to Detail"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "Featured Project",
+  "heading": "Selected <em>Work</em>",
+  "philosophy": "Every project begins with understanding the problem deeply. I believe great software emerges from the intersection of thoughtful architecture, clean code, and deliberate user experience. Each project below represents a unique challenge solved with precision and care.",
+  "concept": "The Concept",
+  "features": "The Features",
+  "design": "The Design",
+  "development": "The Development",
+  "problem": "The Problem",
+  "solution": "The Solution",
+  "techStack": "Technology Stack",
+  "keyFeatures": "Key <em>Features</em>",
+  "liveDemo": "Live Demo",
+  "viewGitHub": "View on GitHub",
+  "viewProject": "View Project Details",
+  "caseStudy": "Case Study"
+}

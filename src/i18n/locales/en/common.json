@@ -1,0 +1,17 @@
+{
+  "site": {
+    "title": "Emad M. Gaballa — Full-Stack Developer",
+    "description": "Full-Stack Developer crafting premium web experiences with elegant code and cinematic design."
+  },
+  "loading": "Loading...",
+  "error": "Something went wrong",
+  "notFound": "Page Not Found",
+  "notFoundDesc": "The page you're looking for doesn't exist or has been moved.",
+  "backHome": "Back to Home",
+  "comingSoon": "Coming Soon",
+  "viewProject": "View Project",
+  "viewAll": "View All",
+  "close": "Close",
+  "menu": "Menu",
+  "skipToContent": "Skip to content"
+}

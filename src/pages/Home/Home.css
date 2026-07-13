@@ -1,0 +1,119 @@
+.home-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 100px;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 30%, var(--hero-gradient-1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 10% 80%, var(--hero-gradient-2) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+.home-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 100%);
+  animation: grid-drift 25s linear infinite;
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.home-hero-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+
+.home-hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 9vw, 9rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+.home-hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.home-hero-role {
+  margin-top: 28px;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 200;
+  color: var(--text-2);
+  letter-spacing: 0.04em;
+  max-width: 540px;
+}
+
+.home-hero-ctas {
+  margin-top: 52px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.home-hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  writing-mode: vertical-rl;
+}
+
+.home-hero-scroll::after {
+  content: '';
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(var(--text-3), transparent);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+
+@media (max-width: 1024px) {
+  .home-hero-scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding-bottom: 80px;
+  }
+
+  .home-hero-ctas {
+    margin-top: 36px;
+    gap: 14px;
+    flex-direction: column;
+  }
+}
+
+[dir="rtl"] .home-hero-scroll {
+  right: auto;
+  left: 60px;
+}

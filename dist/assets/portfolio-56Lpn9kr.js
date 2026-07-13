@@ -1,0 +1,1 @@
+const a={email:"emad.m.gaballa@gmail.com",phone:"+20 1210048828",github:"https://github.com/EmadGaballa",linkedin:"https://www.linkedin.com/in/emad-gaballa/",whatsapp:"https://wa.me/201210048828",resume:"https://drive.google.com/file/d/144L4J3l26IRm8UaPSolCpZqwCOjOaKSG/view?usp=sharing"};export{a as p};

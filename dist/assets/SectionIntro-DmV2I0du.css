@@ -1,0 +1,1 @@
+.section-intro{margin-bottom:16px}.section-intro-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}.section-intro-label:before{content:"";width:28px;height:1px;background:var(--accent);display:inline-block;flex-shrink:0}[dir=rtl] .section-intro-label:before{order:1}

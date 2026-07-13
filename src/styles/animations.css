@@ -1,0 +1,169 @@
+/* ============================================================
+   ANIMATIONS — Shared keyframes & utility classes
+   ============================================================ */
+
+/* ─── Rise up ─── */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Fade in ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Scale in ─── */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Slide from left ─── */
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Slide from right ─── */
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── RTL-aware slide ─── */
+@keyframes slideInLTR {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRTL {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Grid drift ─── */
+@keyframes grid-drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(80px); }
+}
+
+/* ─── Scroll line ─── */
+@keyframes scroll-line {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%      { opacity: 1;   transform: scaleY(0.7); }
+}
+
+/* ─── Pulsing glow ─── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+
+/* ─── Float ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ─── Cursor blink ─── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* ─── Progress bar ─── */
+@keyframes progress {
+  from { width: 0%; }
+  to   { width: var(--progress-width, 100%); }
+}
+
+/* ─── Line expand ─── */
+@keyframes lineExpand {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ─── Rotate ─── */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Utility classes ─── */
+.animate-rise {
+  animation: rise 0.9s var(--ease-out) forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s var(--ease-out) forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.6s var(--ease-out) forwards;
+}
+
+/* ─── Reveal on scroll (JS-triggered) ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[dir="rtl"] .reveal-left {
+  transform: translateX(40px);
+}
+
+[dir="rtl"] .reveal-left.visible {
+  transform: translateX(0);
+}
+
+[dir="rtl"] .reveal-right {
+  transform: translateX(-40px);
+}
+
+[dir="rtl"] .reveal-right.visible {
+  transform: translateX(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ─── Theme transition on all themed elements ─── */
+* {
+  transition: background-color var(--transition-theme),
+              border-color var(--transition-theme),
+              color var(--transition-theme),
+              box-shadow var(--transition-theme);
+}

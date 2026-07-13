@@ -1,0 +1,14 @@
+{
+  "label": "Tools",
+  "heading": "Tools & <em>Technologies</em>",
+  "subtitle": "The technologies I use to bring ideas to life.",
+  "category": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+    "architecture": "Architecture",
+    "design": "Design",
+    "tools": "Tools & Workflow",
+    "devops": "DevOps & Deployment"
+  }
+}
