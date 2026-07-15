@@ -1,110 +1,118 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+// src/pages/Work/Work.tsx
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useReducedMotion, useScroll } from 'framer-motion';
 import PageTransition from '@/components/PageTransition/PageTransition';
 import SectionIntro from '@/components/SectionIntro/SectionIntro';
+import FilmRail from './components/FilmRail';
+import ProjectReel from './components/ProjectReel';
 import { projects } from '@/data/projects';
+import { caseStudies } from './content/caseStudies';
 import './Work.css';
+
+/** Converts a 1-based index into a roman numeral chapter mark (I, II, III…). */
+function toRoman(num: number): string {
+  const table: [number, string][] = [
+    [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
+  ];
+  let n = num;
+  let out = '';
+  for (const [value, symbol] of table) {
+    while (n >= value) {
+      out += symbol;
+      n -= value;
+    }
+  }
+  return out;
+}
 
 export default function Work() {
   const { t } = useTranslation('work');
+  const prefersReducedMotion = useReducedMotion();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = useRef<Array<HTMLElement | null>>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Overall read-through progress, driving the film rail's progress line.
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // Scroll-spy: highlight whichever chapter currently owns the viewport's
+  // center band, so the rail always reflects "where you are in the story."
+  useEffect(() => {
+    const sections = sectionRefs.current.filter(Boolean) as HTMLElement[];
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = sections.indexOf(entry.target as HTMLElement);
+            if (idx !== -1) setActiveIndex(idx);
+          }
+        });
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNavigate = (index: number) => {
+    sectionRefs.current[index]?.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  };
+
+  const railItems = useMemo(
+    () => projects.map((project, i) => ({ label: project.title, marker: toRoman(i + 1) })),
+    []
+  );
 
   return (
     <PageTransition>
-      <section className="work-page section-padding">
-        <div className="container">
+      <div className="work-page" ref={containerRef}>
+        <div className="container work-page-header-wrap section-padding">
           <div className="work-page-header">
             <SectionIntro labelKey="label" ns="work" />
-            <h2
+            <h1
               className="work-page-heading heading-2"
               dangerouslySetInnerHTML={{ __html: t('heading') }}
             />
-            <p className="work-page-philosophy body-base">
-              {t('philosophy')}
-            </p>
+            <p className="work-page-philosophy body-base">{t('philosophy')}</p>
           </div>
+        </div>
 
+        <FilmRail
+          items={railItems}
+          activeIndex={activeIndex}
+          progress={scrollYProgress}
+          onNavigate={handleNavigate}
+        />
+
+        <div className="work-reels">
           {projects.map((project, i) => (
-            <div key={project.slug} className="work-project">
-              <div className="work-project-intro">
-                <div className="work-project-text">
-                  <h3 className="work-project-title heading-3">
-                    {project.subtitle}<br />
-                    <em className="accent-italic">– {project.title}</em>
-                  </h3>
-                </div>
-                <div className="work-project-meta label-mono-sm">
-                  <div>{project.year}</div>
-                  <div>{project.tagline}</div>
-                  <div>{project.type}</div>
-                </div>
-              </div>
-
-              <Link to={`/work/${project.slug}`} className="work-project-hero">
-                <img src={project.heroImage} alt={project.title} loading="lazy" />
-                <div className="work-project-overlay">
-                  <div className="work-project-overlay-links">
-                    <span className="overlay-btn accent">{t('viewProject')} →</span>
-                  </div>
-                </div>
-              </Link>
-
-              <div className="work-case-grid">
-                {[
-                  { label: 'concept', text: project.overview },
-                  { label: 'features', text: project.features?.[0]?.description || '' },
-                  { label: 'design', text: project.features?.[1]?.description || '' },
-                  { label: 'development', text: project.features?.[2]?.description || '' },
-                ].map((item, idx) => (
-                  <motion.div
-                    key={item.label}
-                    className="work-case-card"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-50px' }}
-                    transition={{ delay: idx * 0.1, duration: 0.6 }}
-                  >
-                    <div className="work-case-number">
-                      {String(idx + 1).padStart(2, '0')}
-                    </div>
-                    <div className="work-case-title">{t(item.label)}</div>
-                    <p className="work-case-text">{item.text}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="work-tech-row">
-                {project.techStack.slice(0, 12).map((tech) => (
-                  <span key={tech} className="work-tech-tag">
-                    <span className="work-tech-dot" />{tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="work-screenshots">
-                {project.screenshots.slice(0, 2).map((ss, idx) => (
-                  <div key={idx} className="work-screenshot-card">
-                    <img src={ss.src} alt={ss.alt} loading="lazy" />
-                    <div className="work-screenshot-label">{ss.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="work-project-links">
-                <a href={project.liveUrl} target="_blank" rel="noopener" className="btn-primary">
-                  {t('liveDemo')} ↗
-                </a>
-                <a href={project.githubUrl} target="_blank" rel="noopener" className="btn-secondary">
-                  {t('viewGitHub')} →
-                </a>
-                <Link to={`/work/${project.slug}`} className="btn-secondary">
-                  {t('viewProject')} →
-                </Link>
-              </div>
-            </div>
+            <ProjectReel
+              key={project.slug}
+              ref={(el: HTMLElement | null) => {
+                sectionRefs.current[i] = el;
+              }}
+              project={project}
+              content={caseStudies[project.slug]}
+              index={i}
+              chapterMark={toRoman(i + 1)}
+              nextProject={projects[i + 1]}
+              isFirst={i === 0}
+              reducedMotion={!!prefersReducedMotion}
+            />
           ))}
         </div>
-      </section>
+      </div>
     </PageTransition>
   );
 }

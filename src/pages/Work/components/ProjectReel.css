@@ -1,0 +1,474 @@
+/* src/pages/Work/components/ProjectReel.css */
+
+.reel {
+  position: relative;
+  /* Scales layout breathing room down gracefully on shrunken viewports */
+  padding-bottom: clamp(6rem, 15vw, 13.75rem);
+}
+
+.reel:first-of-type {
+  padding-top: 0;
+}
+
+.reel + .reel {
+  border-top: 1px solid var(--border);
+  padding-top: clamp(5rem, 12vw, 10rem);
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+
+.reel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.reel-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+.reel-chapter-mark {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-dim);
+  padding-top: 10px;
+}
+
+.reel-title em {
+  font-style: italic;
+}
+
+.reel-header-meta {
+  text-align: end; /* Automatic multi-language alignment */
+  line-height: 2;
+  flex-shrink: 0;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────── */
+
+.reel-hero {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto clamp(4rem, 10vw, 7.5rem);
+  padding-inline: max(1rem, 3vw);
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.reel-hero-img {
+  position: absolute;
+  inset-block: -60px;
+  inset-inline: max(1rem, 3vw);
+  width: calc(100% - (max(1rem, 3vw) * 2));
+  height: calc(100% + 120px);
+  object-fit: cover;
+  filter: brightness(0.88) saturate(0.95);
+  border-radius: 4px;
+}
+
+.reel-hero-gradient {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: max(1rem, 3vw);
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 12, 0.55) 0%,
+    transparent 35%
+  );
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+.reel-hero-hint {
+  position: absolute;
+  bottom: clamp(1rem, 3vw, 1.75rem);
+  inset-inline-end: clamp(
+    1.5rem,
+    4vw,
+    2.75rem
+  ); /* Flips sides natively for LTR/RTL */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  color: var(--text-1);
+  background: rgba(10, 10, 12, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.35s var(--ease),
+    border-color 0.3s;
+  pointer-events: none;
+}
+
+.reel-hero:hover .reel-hero-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reel-hero:hover .reel-hero-hint,
+.reel-hero-hint {
+  border-color: var(--border);
+}
+
+.reel-hero:hover .reel-hero-hint {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Narrative blocks (challenge / solution) ───────────────────── */
+
+.reel-narrative {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 4rem);
+  margin-bottom: clamp(5rem, 12vw, 11.25rem);
+}
+
+.reel-narrative-block {
+  /* max-width: 520px;
+  width: 100%; */
+}
+
+.reel-eyebrow {
+  display: block;
+  color: var(--accent);
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.reel-narrative-text {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem; /* Space from the right */
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-2);
+}
+
+/* ── Specific Narrative Text Type Hooks (Edit these individually) ── */
+
+.reel-challenge-text {
+  /* Style specifically for your Challenge (Problem) text */
+}
+
+.reel-approach-text {
+  /* Style specifically for your Approach (Solution) text */
+}
+
+.reel-engineering-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  color: var(--text-2, #d4d4d8);
+}
+
+/* ── Feature sequence ──────────────────────────────────────────── */
+
+.reel-features {
+  margin-bottom: clamp(5rem, 12vw, 11.25rem);
+}
+
+.reel-section-caption {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 4.5vw, 2.4rem); /* Scales smoothly across sizes */
+  font-weight: 300;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.reel-section-caption em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.reel-feature-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.reel-feature-row {
+  display: grid;
+  grid-template-columns: clamp(1rem, 4vw, 10rem) 1fr;
+  gap: clamp(3rem, 3vw, 2rem);
+  padding-block: clamp(1.5rem, 4vw, 2.25rem);
+  border-top: 1px solid var(--border);
+}
+
+.reel-feature-row:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.reel-feature-number {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: rgb(114, 114, 114);
+  padding-top: 4px;
+}
+
+.reel-feature-name {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.reel-feature-desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.75;
+  max-width: 850px;
+}
+
+/* ── Engineering / tech stack ──────────────────────────────────── */
+
+.reel-engineering {
+  margin-bottom: clamp(5rem, 12vw, 11.25rem);
+}
+
+.reel-engineering-block {
+  max-width: 1020px; /* Increase this to your desired maximum desktop width */
+  width: 100%; /* Keeps it fluid on mobile devices */
+  margin-bottom: clamp(3rem, 5vw, 3rem);
+}
+
+.reel-tech-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  max-width: 1060px;
+}
+
+.reel-tech-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(10px, 2vw, 14px) clamp(14px, 3vw, 20px);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  transition:
+    border-color 0.3s,
+    color 0.3s,
+    background 0.3s;
+}
+
+.reel-tech-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.reel-tech-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Editorial gallery ─────────────────────────────────────────── */
+
+.reel-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+  grid-auto-rows: 1fr;
+  gap: clamp(3rem, 3vw, 3rem);
+  margin: 0 auto clamp(4rem, 10vw, 8rem);
+  max-width: 1150px;
+  padding-inline: max(1rem, 3vw);
+}
+
+.reel-gallery-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  aspect-ratio: 16/10;
+  margin: 0;
+}
+
+.reel-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition:
+    transform 0.6s var(--ease),
+    filter 0.4s;
+}
+
+.reel-gallery-item:hover img {
+  transform: scale(1.02);
+  filter: brightness(1);
+}
+
+.reel-gallery-caption {
+  position: absolute;
+  bottom: 16px;
+  inset-inline-start: 16px; /* Native alignment positioning */
+  color: var(--text-2);
+  background: rgba(10, 10, 12, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+/* ── Outcome ────────────────────────────────────────────────────── */
+
+.reel-outcome {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: clamp(4rem, 10vw, 6.25rem);
+}
+
+.reel-outcome-block {
+  max-width: 1060px;
+}
+
+.reel-outcome-text {
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+.reel-lessons-text {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(164, 145, 98, 0.724);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.reel-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   PROJECT REEL SCOPED MONOSPACE TYPOGRAPHY
+   ========================================================================== */
+
+.reel-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  /* Apple Metallic Gradient */
+  background: linear-gradient(135deg, #f3e5ab 0%, #d3b142 50%, #aa7c11 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reel-header-meta {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #d1c393;
+}
+
+.reel-hero-hint,
+.reel-gallery-caption,
+.reel-next-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgb(199, 186, 119);
+}
+
+/* ── Sequence transition to next chapter ───────────────────────── */
+
+.reel-next {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  text-decoration: none;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--border);
+  transition:
+    border-color 0.4s,
+    background 0.4s;
+}
+
+.reel-next:hover {
+  border-color: var(--border-glow);
+  background: var(--bg-card-hover);
+}
+
+.reel-next-frame {
+  width: clamp(90px, 15vw, 120px);
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.reel-next-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  transition: transform 0.6s var(--ease);
+}
+
+.reel-next:hover .reel-next-frame img {
+  transform: scale(1.06);
+}
+
+.reel-next-copy span {
+  color: var(--accent);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ── Responsive Architecture Overrides ─────────────────────────── */
+
+@media (max-width: 900px) {
+  .reel-narrative {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .reel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .reel-header-meta {
+    text-align: start; /* Flips alignment safely on layout stack */
+  }
+
+  .reel-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-hero-img {
+    filter: brightness(0.88) saturate(0.95) !important;
+    transform: none !important;
+  }
+}

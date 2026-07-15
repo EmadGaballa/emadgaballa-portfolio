@@ -1,0 +1,166 @@
+/* src/pages/Work/components/FilmRail.css */
+
+.film-rail {
+  position: fixed;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 10px;
+  border-radius: 14px;
+  background: rgba(16, 16, 20, 0.55);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.film-rail-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.film-rail-track-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+}
+
+.film-rail-track-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.film-rail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 14px;
+}
+
+.film-rail-item {
+  display: flex;
+}
+
+.film-rail-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-2);
+  transition: color 0.3s var(--ease), background 0.3s var(--ease);
+  width: 100%;
+}
+
+.film-rail-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.film-rail-marker {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  width: 16px;
+  color: var(--accent-dim);
+  transition: color 0.3s var(--ease);
+}
+
+/* Labels are always visible now — no hover-to-reveal — so the whole
+   project list is scannable and clickable at a glance. */
+.film-rail-label {
+  font-family: var(--font-mono);
+  font-size: 0.60rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: opacity 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.film-rail-btn.is-active,
+.film-rail-btn:hover {
+  color: var(--text-1);
+}
+
+.film-rail-btn.is-active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.film-rail-btn.is-active .film-rail-label,
+.film-rail-btn:hover .film-rail-label {
+  opacity: 1;
+}
+
+.film-rail-btn.is-active .film-rail-marker,
+.film-rail-btn:hover .film-rail-marker {
+  color: var(--accent);
+}
+
+[dir='rtl'] .film-rail {
+  right: auto;
+  left: 32px;
+}
+
+[dir='rtl'] .film-rail-track {
+  left: auto;
+  right: 0;
+}
+
+[dir='rtl'] .film-rail-list {
+  padding-left: 0;
+  padding-right: 14px;
+}
+
+@media (max-width: 1100px) {
+  .film-rail {
+    right: 16px;
+  }
+
+  [dir='rtl'] .film-rail {
+    left: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .film-rail {
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: none;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 0;
+    padding: 10px 16px;
+    gap: 0;
+  }
+
+  .film-rail-track {
+    position: static;
+    width: 100%;
+    height: 2px;
+    order: 2;
+  }
+
+  .film-rail-list {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-rail-track-fill {
+    transition: none;
+  }
+}

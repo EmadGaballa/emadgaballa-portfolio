@@ -21,7 +21,7 @@ export default function Resume() {
 
           <div className="resume-content">
             <div className="resume-section">
-              <h3 className="resume-section-title heading-4">{t('profile')}</h3>
+              <h3 className="resume-section-title heading-4">{t('')}</h3>
               <p className="body-base">{t('profileText')}</p>
             </div>
 
@@ -48,9 +48,9 @@ export default function Resume() {
               <div className="resume-timeline">
                 <div className="resume-timeline-item">
                   <div className="resume-timeline-year">University</div>
-                  <div className="resume-timeline-title">Architecture Studies</div>
+                  <div className="resume-timeline-title">Engineering At The British University in Egypt</div>
                   <div className="resume-timeline-desc">
-                    Studied architecture at university, developing a foundation in structural thinking, design principles, and systematic problem-solving.
+                  Developed a strong engineering foundation centered on systems thinking, logical analysis, and designing practical solutions to complex problems.
                   </div>
                 </div>
               </div>

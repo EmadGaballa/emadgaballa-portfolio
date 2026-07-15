@@ -1,44 +1,75 @@
-.cursor-dot {
+/* ==========================================================================
+   HIDE SYSTEM POINTER GLOBALLY
+   ========================================================================== */
+html, 
+body {
+  cursor: none !important;
+}
+
+a, 
+button, 
+input, 
+select, 
+textarea, 
+[role="button"],
+.cursor-target,
+[data-cursor-text] {
+  cursor: none !important;
+}
+
+/* ==========================================================================
+   CUSTOM CURSOR SYSTEM STRUCTURE
+   ========================================================================== */
+
+.cursor-dot,
+.cursor-ring {
   position: fixed;
-  z-index: 9999;
-  width: 8px;
-  height: 8px;
-  background: var(--cursor-bg);
+  top: 0;
+  left: 0;
   border-radius: 50%;
   pointer-events: none;
-  mix-blend-mode: screen;
-  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              opacity 0.3s;
+  will-change: transform, width, height;
+  /* Transform properties removed here; handed off entirely to React/Framer Engine */
+}
+
+.cursor-dot {
+  z-index: 99999;
+  background: var(--cursor-bg);
+  mix-blend-mode: screen; 
 }
 
 .cursor-ring {
-  position: fixed;
-  z-index: 9998;
-  width: 36px;
-  height: 36px;
+  z-index: 99998;
   border: 1px solid var(--cursor-ring);
-  border-radius: 50%;
-  pointer-events: none;
-  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              opacity 0.3s,
-              border-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-body.cursor-hover .cursor-dot {
-  width: 48px;
-  height: 48px;
-  opacity: 0.15;
+.cursor-text-label {
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--cursor-ring);
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-body.cursor-hover .cursor-ring {
-  width: 12px;
-  height: 12px;
-  opacity: 0;
-}
+/* ==========================================================================
+   HARDWARE & DISPLAY BYPASS DEGRADATIONS
+   ========================================================================== */
 
 @media (hover: none) and (pointer: coarse) {
+  html, 
+  body,
+  a, 
+  button,
+  .cursor-target {
+    cursor: auto !important;
+  }
+  
   .cursor-dot,
   .cursor-ring {
     display: none !important;

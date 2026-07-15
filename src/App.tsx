@@ -5,7 +5,6 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import MainLayout from '@/layouts/MainLayout';
 import '@/styles/loading.css';
 
-const Home = lazy(() => import('@/pages/Home/Home'));
 const About = lazy(() => import('@/pages/About/About'));
 const Work = lazy(() => import('@/pages/Work/Work'));
 const Project = lazy(() => import('@/pages/Project/Project'));
@@ -26,13 +25,20 @@ export default function App() {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route element={<MainLayout />}>
-                <Route path="/" element={<Home />} />
+                {/* Landing Page */}
+                <Route path="/" element={<About />} />
+
+                {/* Optional alias */}
                 <Route path="/about" element={<About />} />
+
+                {/* Other Pages */}
                 <Route path="/work" element={<Work />} />
                 <Route path="/work/:slug" element={<Project />} />
                 <Route path="/skills" element={<Skills />} />
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/contact" element={<Contact />} />
+
+                {/* 404 */}
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>

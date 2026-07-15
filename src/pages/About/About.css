@@ -63,6 +63,7 @@
 .about-hero-content {
   position: relative;
   z-index: 2;
+  margin-top: 8rem;
 }
 
 .about-hero-tag {
@@ -89,12 +90,13 @@
 }
 
 .about-hero-role {
-  margin-top: 28px;
+  margin-top: 1.3rem;
+  margin-bottom: 2rem;
   font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 200;
   color: var(--text-2);
   letter-spacing: 0.04em;
-  max-width: 540px;
+  max-width: 700px;
 }
 
 .about-hero-ctas {

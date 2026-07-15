@@ -5,6 +5,7 @@
 }
 
 .skills-page-header {
+  margin-top: 3rem;
   margin-bottom: 72px;
 }
 
@@ -50,11 +51,14 @@
   position: relative;
   overflow: hidden;
   cursor: default;
-  transition: border-color 0.4s, background 0.4s, transform 0.4s var(--ease-spring);
+  transition:
+    border-color 0.4s,
+    background 0.4s,
+    transform 0.4s var(--ease-spring);
 }
 
 .skill-card::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;

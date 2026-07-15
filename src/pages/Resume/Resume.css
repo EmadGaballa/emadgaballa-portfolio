@@ -3,6 +3,7 @@
 }
 
 .resume-header {
+  margin-top: 3rem;
   margin-bottom: 64px;
 }
 
@@ -11,8 +12,8 @@
 }
 
 .resume-section {
-  margin-bottom: 60px;
-  padding-bottom: 60px;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -23,7 +24,7 @@
 }
 
 .resume-section-title {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   color: var(--text-1);
 }
 
