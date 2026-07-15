@@ -6,16 +6,16 @@ import { projects } from '@/data/projects';
 import './Project.css';
 
 export default function Project() {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug: paramSlug } = useParams<{ slug: string }>();
   const { t } = useTranslation('project');
-  const project = projects.find((p) => p.slug === slug);
+  const project = projects.find((p) => p.slug === paramSlug);
 
   if (!project) {
     return (
       <PageTransition>
         <section className="project-page section-padding">
           <div className="container">
-            <h1 className="heading-2">Project not found</h1>
+            <h1 className="heading-2">{t('notFound')}</h1>
             <Link to="/work" className="btn-primary" style={{ marginTop: 32, display: 'inline-flex' }}>
               {t('backToWork')}
             </Link>
@@ -25,18 +25,23 @@ export default function Project() {
     );
   }
 
+  const slug = project.slug;
+  const p = (key: string) => t(`projects.${slug}.${key}`, { defaultValue: "" });
+  const pf = (i: number, key: string) => t(`projects.${slug}.features.${i}.${key}`, { defaultValue: "" });
+  const ps = (i: number, key: string) => t(`projects.${slug}.screenshots.${i}.${key}`, { defaultValue: "" });
+
   return (
     <PageTransition>
       <section className="project-page">
         <div className="project-hero-section">
           <div className="container">
             <div className="project-hero-meta">
-              <div className="label-mono-sm">{project.year} / {project.type}</div>
+              <div className="label-mono-sm">{project.year} / {p("type")}</div>
               <h1 className="project-hero-title heading-1">
                 {project.title}
                 <em className="accent-italic">.</em>
               </h1>
-              <p className="project-hero-tagline body-large">{project.tagline}</p>
+              <p className="project-hero-tagline body-large">{p("tagline")}</p>
             </div>
           </div>
           <div className="project-hero-image">
@@ -47,15 +52,8 @@ export default function Project() {
         <div className="container">
           <div className="project-section">
             <h2 className="heading-3">{t('overview')}</h2>
-            <p className="body-base project-text">{project.overview}</p>
+            <p className="body-base project-text">{p("overview")}</p>
           </div>
-
-          {project.problem && (
-            <div className="project-section">
-              <h2 className="heading-3">{t('problem')}</h2>
-              <p className="body-base project-text">{project.problem}</p>
-            </div>
-          )}
 
           <div className="project-section">
             <h2 className="heading-3" dangerouslySetInnerHTML={{ __html: t('features') }} />
@@ -71,8 +69,8 @@ export default function Project() {
                 >
                   <span className="project-feature-num">{f.number}</span>
                   <div>
-                    <div className="project-feature-name">{f.name}</div>
-                    <div className="project-feature-desc">{f.description}</div>
+                    <div className="project-feature-name">{pf(i, "name")}</div>
+                    <div className="project-feature-desc">{pf(i, "description")}</div>
                   </div>
                   <span className="project-feature-arrow">→</span>
                 </motion.div>
@@ -104,7 +102,7 @@ export default function Project() {
                   transition={{ delay: i * 0.1, duration: 0.6 }}
                 >
                   <img src={ss.src} alt={ss.alt} loading="lazy" />
-                  <div className="project-gallery-label">{ss.label}</div>
+                  <div className="project-gallery-label">{ps(i, "label")}</div>
                 </motion.div>
               ))}
             </div>

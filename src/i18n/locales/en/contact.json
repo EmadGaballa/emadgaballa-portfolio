@@ -6,6 +6,8 @@
   "email": "Email",
   "phone": "Phone",
   "location": "Location",
+  "LinkedIn": "LinkedIn",
+  "GitHub": "GitHub",
   "downloadResume": "My Resume",
   "whatsapp": "WhatsApp"
 }

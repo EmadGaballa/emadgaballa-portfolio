@@ -9,12 +9,10 @@ import {
   useReducedMotion as useReducedMotionHook,
 } from "framer-motion";
 import type { Project } from "@/types";
-import type { CaseStudyContent } from "../content/caseStudies";
 import "./ProjectReel.css";
 
 interface Props {
   project: Project;
-  content: CaseStudyContent;
   index: number;
   chapterMark: string;
   nextProject?: Project;
@@ -28,11 +26,15 @@ const fadeUp = {
 };
 
 const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
-  { project, content, index, chapterMark, nextProject },
+  { project, index, chapterMark, nextProject },
   ref,
 ) {
   const { t } = useTranslation("work");
   const prefersReducedMotion = useReducedMotionHook();
+  const slug = project.slug;
+  const p = (key: string) => t(`projects.${slug}.${key}`);
+  const pf = (i: number, key: string) => t(`projects.${slug}.features.${i}.${key}`, { defaultValue: "" });
+  const ps = (i: number, key: string) => t(`projects.${slug}.screenshots.${i}.${key}`, { defaultValue: "" });
 
   // Parallax + clip-reveal for the hero image, driven by this reel's own
   // scroll position rather than the page's, so each chapter reveals on its
@@ -48,6 +50,15 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
 
   const isEven = index % 2 === 0;
 
+  const projSubtitle = p("subtitle");
+  const projTagline = p("tagline");
+  const projType = p("type");
+  const projChallenge = p("challenge");
+  const projApproach = p("approach");
+  const projEngineering = p("engineering");
+  const projOutcome = p("outcome");
+  const projLessons = p("lessons");
+
   return (
     <section
       ref={ref}
@@ -60,15 +71,15 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
         <div className="reel-header-left">
           <span className="reel-chapter-mark">{chapterMark}</span>
           <h2 id={`${project.slug}-title`} className="reel-title heading-2">
-            {project.subtitle}
+            {projSubtitle}
             <br />
             <em className="accent-italic">– {project.title}</em>
           </h2>
         </div>
         <div className="reel-header-meta">
           <div>{project.year}</div>
-          <div>{project.tagline}</div>
-          <div>{project.type}</div>
+          <div>{projTagline}</div>
+          <div>{projType}</div>
         </div>
       </div>
 
@@ -107,7 +118,7 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="reel-eyebrow">{t("problem")}</span>
-          <p className="reel-narrative-text reel-challenge-text">{content.challenge}</p>
+          <p className="reel-narrative-text reel-challenge-text">{projChallenge}</p>
         </motion.div>
 
         <motion.div
@@ -119,7 +130,7 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="reel-eyebrow">{t("solution")}</span>
-          <p className="reel-narrative-text reel-approach-text">{content.approach}</p>
+          <p className="reel-narrative-text reel-approach-text">{projApproach}</p>
         </motion.div>
       </div>
 
@@ -142,8 +153,8 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
             >
               <span className="reel-feature-number">{feature.number}</span>
               <div className="reel-feature-copy">
-                <h3 className="reel-feature-name">{feature.name}</h3>
-                <p className="reel-feature-desc">{feature.description}</p>
+                <h3 className="reel-feature-name">{pf(i, "name")}</h3>
+                <p className="reel-feature-desc">{pf(i, "description")}</p>
               </div>
             </motion.div>
           ))}
@@ -161,7 +172,7 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="reel-eyebrow">{t("development")}</span>
-          <p className="reel-narrative-text reel-engineering-text">{content.engineering}</p>
+          <p className="reel-narrative-text reel-engineering-text">{projEngineering}</p>
         </motion.div>
 
         <motion.div
@@ -201,7 +212,7 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           >
             <img src={shot.src} alt={shot.alt} loading="lazy" />
             <figcaption className="reel-gallery-caption">
-              {shot.label}
+              {ps(i, "label")}
             </figcaption>
           </motion.figure>
         ))}
@@ -219,9 +230,9 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
         >
           <span className="reel-eyebrow">{t("caseStudy")}</span>
           <p className="reel-narrative-text reel-outcome-text">
-            {content.outcome}
+            {projOutcome}
           </p>
-          <p className="reel-lessons-text">{content.lessons}</p>
+          <p className="reel-lessons-text">{projLessons}</p>
         </motion.div>
 
         <div className="reel-actions">
@@ -258,7 +269,7 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
             />
           </div>
           <div className="reel-next-copy">
-            <span className="reel-next-label">Next chapter</span>
+            <span className="reel-next-label">{t("nextChapter")}</span>
             <h3 className="reel-next-title heading-3">{nextProject.title}</h3>
           </div>
         </Link>

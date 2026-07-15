@@ -13,5 +13,85 @@
   "liveDemo": "Live Demo",
   "viewGitHub": "View on GitHub",
   "viewProject": "View Project Details",
-  "caseStudy": "Case Study"
+  "caseStudy": "Case Study",
+  "viewLiveSite": "View Live Site",
+  "nextChapter": "Next chapter",
+  "projectType": "Type",
+  "projectYear": "Year",
+  "projects": {
+    "flickfinder": {
+      "subtitle": "The Flagship",
+      "tagline": "FlickFinder — All The World's Movies",
+      "type": "Solo Project",
+      "overview": "The goal was to create a cinematic movie discovery platform that feels modern, immersive, and highly interactive. The website needed to go beyond a basic movie database and deliver an experience similar to premium streaming platforms while remaining lightweight and responsive.",
+      "challenge": "Most movie applications stop at displaying TMDB data. FlickFinder set out to create a complete platform—combining cinematic discovery, persistent personalization, secure authentication, and social interaction into a polished experience that feels closer to a modern streaming service than a traditional movie database.",
+      "approach": "The application was designed around independent frontend and backend systems working together. A cinematic React interface delivers smooth browsing, while a modular Express API manages authentication, user libraries, ratings, friendships, avatars, and personalized content. Every feature was built as part of a cohesive ecosystem rather than as isolated functionality.",
+      "engineering": "As the project evolved, the focus shifted from consuming movie data to engineering a scalable full-stack architecture. A layered Express + TypeScript backend, Prisma ORM, and PostgreSQL power secure authentication with JWT and HTTP-only cookies, persistent user libraries, friend relationships, ratings, watchlists, favorites, and profile management. The frontend complements this with optimized rendering, lazy loading, memoization, and carefully structured state management to keep interactions responsive as the application grows.",
+      "outcome": "The result is a production-ready full-stack movie platform that combines cinematic design with robust engineering. Secure authentication, persistent personalization, social features, modular APIs, and a scalable database architecture deliver a fast, reliable experience that is easy to maintain, extend, and deploy.",
+      "lessons": "A great product isn't built by adding features—it's built by creating an architecture where every feature fits together naturally and can evolve without increasing complexity.",
+      "features": [
+        { "name": "Secure Authentication & User Accounts", "description": "Complete JWT authentication system with protected routes, encrypted credentials, persistent sessions, personalized user profiles, and secure account management built on an Express API and PostgreSQL database." },
+        { "name": "Social Platform Features", "description": "Integrated friends system with profile discovery, friend requests, shared activity, public profiles, and personalized movie collections, transforming the application into a social movie platform rather than a simple catalog." },
+        { "name": "Personal Library & Ratings", "description": "Custom watchlists, favorites, personal ratings, and review management synchronized across devices through a centralized backend, allowing every user to build and manage their own movie library." },
+        { "name": "Intelligent Movie Discovery", "description": "Real-time debounced search, infinite scrolling, trending collections, advanced filtering, and flexible sorting work together to deliver a fast, uninterrupted browsing experience while minimizing unnecessary API requests." },
+        { "name": "Scalable Full-Stack Architecture", "description": "Built with React, Express, Prisma ORM, and PostgreSQL using a modular REST API, centralized state management, reusable services, protected endpoints, and a maintainable project structure designed for long-term scalability." },
+        { "name": "Production-Ready User Experience", "description": "Optimistic UI updates, responsive layouts, loading skeletons, graceful error handling, route protection, and synchronized client-server state provide a polished experience that remains reliable under real-world usage." }
+      ],
+      "screenshots": [
+        { "label": "Trending / popular movie sections" },
+        { "label": "Optimized Sorting / Filtering system" },
+        { "label": "Collecting movies / TV shows in sections" },
+        { "label": "Powerful API for user experience" }
+      ]
+    },
+    "geoboard": {
+      "subtitle": "The Smart Hub",
+      "tagline": "GeoBoard — The Smart Geo Dashboard",
+      "type": "Solo Project",
+      "overview": "GeoBoard is a production-ready full-stack dashboard that centralizes live weather, breaking news, currency exchange, and location intelligence into a single responsive experience. Built with a scalable React and Express architecture, the platform combines real-time data, secure authentication, Redis caching, background processing, and modern UI design to deliver fast, reliable, and intuitive access to everyday information.",
+      "challenge": "Building a unified dashboard meant combining weather, news, currency exchange, authentication, and location services into one cohesive platform while keeping each system fast, reliable, and independently maintainable. The challenge wasn't integrating multiple APIs—it was making them behave like a single polished product.",
+      "approach": "The application was designed around a modular React frontend backed by an Express REST API, with every feature isolated into dedicated services and routes. Redis caching, background jobs, and a responsive dashboard architecture allow weather, news, currency, authentication, and location services to work together seamlessly while remaining independently scalable.",
+      "engineering": "A production-ready backend was built using Express, Prisma, PostgreSQL, Redis, and BullMQ to handle authentication, caching, scheduled refresh jobs, and secure API communication. TypeScript enforces consistent data contracts across external providers, while JWT authentication, httpOnly cookies, rate limiting, validation, and modular service layers create a secure, maintainable architecture designed for real-world deployment.",
+      "outcome": "GeoBoard evolved into a full-stack smart dashboard that delivers live weather, breaking news, currency exchange, and location intelligence through a fast, secure, and highly responsive experience. With scalable backend infrastructure, Redis acceleration, production deployment, and modern UI design, the platform demonstrates enterprise-level engineering beyond a traditional dashboard project.",
+      "lessons": "A scalable application isn't defined by how many features it has—it's defined by how independently those features can evolve without compromising performance, security, or maintainability.",
+      "features": [
+        { "name": "Intelligent Weather & Location Services", "description": "Real-time weather dashboard featuring automatic location detection, manual city search, reverse geocoding, hourly and multi-day forecasts, cached API responses, and responsive weather visualizations optimized for every device." },
+        { "name": "Smart News & Currency Intelligence", "description": "Live news aggregation across multiple categories alongside real-time currency conversion, powered by Redis caching, optimized API requests, background refresh jobs, and responsive data presentation for fast information access." },
+        { "name": "Secure Authentication & User Settings", "description": "Complete authentication system with JWT, secure httpOnly cookies, persistent sessions, Google OAuth support, password reset, profile management, customizable user settings, and protected account operations." },
+        { "name": "Enterprise Backend Architecture", "description": "Modular Express REST API built with Prisma ORM, PostgreSQL, Redis, and BullMQ, featuring scalable service layers, background jobs, optimized database queries, centralized validation, and secure middleware architecture." },
+        { "name": "Performance & Security Engineering", "description": "Designed with Redis caching, scheduled cache warming, lazy loading, code splitting, efficient React rendering, rate limiting, Helmet, bcrypt hashing, Zod validation, and secure session management for production reliability." },
+        { "name": "Modern Responsive Experience", "description": "Clean component-driven interface with Framer Motion animations, adaptive layouts, loading skeletons, graceful error handling, responsive navigation, and polished user feedback across desktop and mobile devices." }
+      ],
+      "screenshots": [
+        { "label": "Component-Based Frontend System" },
+        { "label": "Live Currency Exchange Tracking API" },
+        { "label": "Fully Utilized Multifunctional API" },
+        { "label": "Powerful Backend System" }
+      ]
+    },
+    "fortress-ird": {
+      "subtitle": "A Showpiece",
+      "tagline": "Fortress Investment & Real Estate Development",
+      "type": "Solo Project",
+      "overview": "The client needed a modern online presence to replace an outdated website that was hurting conversions. It was slow, unresponsive on mobile, and failed to communicate their premium brand value effectively.",
+      "challenge": "Fortress Investment & Real Estate Development came in with a website that was actively working against them: slow to load, broken on mobile, and visually out of step with the premium developments it was meant to represent. For a real-estate brand, a website that feels cheap undercuts the very product it is selling.",
+      "approach": "Rather than patch the old site, it was rebuilt from a blank canvas with performance as a design constraint from day one — no framework overhead, no unnecessary dependencies, just HTML, CSS, and vanilla JavaScript engineered to load fast and scroll smoothly on any device, paired with cinematic Intersection-Observer-driven reveal animations that read as premium rather than decorative.",
+      "engineering": "Every asset was optimized and lazy-loaded, critical CSS was inlined to eliminate render-blocking, and every interactive element was built to be keyboard- and touch-accessible without pulling in a single external UI library — a deliberate constraint that kept the bundle lean and the client's hosting costs low.",
+      "outcome": "The rebuilt site now runs pixel-perfect from 320px mobile screens up to 4K desktop displays, with fast load times and smooth, accessible interactions that finally match the premium positioning of the developments it showcases.",
+      "lessons": "Going dependency-free was a constraint, not a limitation — it forced every animation and layout decision to justify its cost, which is exactly the discipline a performance-first brief demands.",
+      "features": [
+        { "name": "Fully Responsive Layout", "description": "Pixel-perfect across all screen sizes — from 320px mobile to 4K desktop — using fluid typography and adaptive grid systems." },
+        { "name": "Cinematic Scroll Animations", "description": "Intersection Observer-powered reveal animations that feel smooth and cinematic, enhancing storytelling without distracting from content." },
+        { "name": "Performance-First Architecture", "description": "Fast-loading, pixel-perfect interfaces designed for speed, responsiveness, and a flawless user experience. Optimised assets, lazy loading, critical and CSS inlining." },
+        { "name": "Accessible & SEO-Optimised", "description": "Designed for accessibility and clarity, with semantic HTML and structured markup for seamless SEO performance." },
+        { "name": "Interactive UI Components", "description": "Crafted fully interactive, keyboard- and touch-friendly UI components. Optimized for accessibility and mobile, with zero dependency on external libraries." }
+      ],
+      "screenshots": [
+        { "label": "Modern Interface" },
+        { "label": "User Experience" },
+        { "label": "Responsive Design" },
+        { "label": "Scalable Architecture" }
+      ]
+    }
+  }
 }

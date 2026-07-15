@@ -13,5 +13,9 @@
   "viewAll": "View All",
   "close": "Close",
   "menu": "Menu",
-  "skipToContent": "Skip to content"
+  "skipToContent": "Skip to content",
+  "brandSub": "FULL STACK DEVELOPER",
+  "letsBuild": "Let's Build",
+  "footerRights": "All rights reserved.",
+  "footerBuilt": "Built with React, TypeScript & CSS"
 }

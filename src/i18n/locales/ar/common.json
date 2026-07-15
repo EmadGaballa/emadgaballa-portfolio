@@ -13,5 +13,9 @@
   "viewAll": "عرض الكل",
   "close": "إغلاق",
   "menu": "القائمة",
-  "skipToContent": "تخطى إلى المحتوى"
+  "skipToContent": "تخطى إلى المحتوى",
+  "brandSub": "مطور FULL STACK",
+  "letsBuild": "هيا نبني",
+  "footerRights": "جميع الحقوق محفوظة.",
+  "footerBuilt": "بُني باستخدام React و TypeScript و CSS"
 }

@@ -1,0 +1,1 @@
+import{j as t,m as a}from"./motion-ZePTnYO7.js";const n={initial:{opacity:0,y:20},enter:{opacity:1,y:0},exit:{opacity:0,y:-20}};function o({children:i}){return t.jsx(a.div,{variants:n,initial:"initial",animate:"enter",exit:"exit",transition:{duration:.6,ease:[0,0,.2,1]},children:i})}export{o as P};

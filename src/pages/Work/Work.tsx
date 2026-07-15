@@ -7,7 +7,6 @@ import SectionIntro from '@/components/SectionIntro/SectionIntro';
 import FilmRail from './components/FilmRail';
 import ProjectReel from './components/ProjectReel';
 import { projects } from '@/data/projects';
-import { caseStudies } from './content/caseStudies';
 import './Work.css';
 
 /** Converts a 1-based index into a roman numeral chapter mark (I, II, III…). */
@@ -103,7 +102,6 @@ export default function Work() {
                 sectionRefs.current[i] = el;
               }}
               project={project}
-              content={caseStudies[project.slug]}
               index={i}
               chapterMark={toRoman(i + 1)}
               nextProject={projects[i + 1]}

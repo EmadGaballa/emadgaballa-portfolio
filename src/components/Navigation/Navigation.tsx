@@ -95,7 +95,7 @@ export default function Navigation() {
           <Link to="/" className="nav-brand-group">
             <div className="brand-typography">
               <span className="brand-main">EMG</span>
-              <span className="brand-sub">FULL STACK DEVELOPER</span>
+              <span className="brand-sub">{t('common:brandSub')}</span>
             </div>
           </Link>
 
@@ -176,7 +176,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className="premium-magnetic-cta"
             >
-              <span className="cta-inner-text">Let's Build →</span>
+              <span className="cta-inner-text">{t('common:letsBuild')} →</span>
             </motion.a>
 
             {/* Cinematic Full Screen Mobile Toggle */}
@@ -185,7 +185,7 @@ export default function Navigation() {
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle Navigation Shell"
             >
-              <span className="menu-trigger-text">{mobileOpen ? 'CLOSE' : 'MENU'}</span>
+              <span className="menu-trigger-text">{mobileOpen ? t('common:close') : t('common:menu')}</span>
             </button>
           </div>
         </div>

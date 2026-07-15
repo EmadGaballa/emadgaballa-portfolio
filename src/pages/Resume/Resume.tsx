@@ -21,7 +21,7 @@ export default function Resume() {
 
           <div className="resume-content">
             <div className="resume-section">
-              <h3 className="resume-section-title heading-4">{t('')}</h3>
+              <h3 className="resume-section-title heading-4">{t('profile')}</h3>
               <p className="body-base">{t('profileText')}</p>
             </div>
 

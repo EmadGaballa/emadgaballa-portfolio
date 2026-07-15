@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import './Footer.css';
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   return (
     <footer className="footer">
@@ -16,10 +16,10 @@ export default function Footer() {
           >
             Emad M. Gaballa
           </a>
-          . All rights reserved.
+          . {t('footerRights')}
         </p>
         <p className="footer-built">
-          Built with React, TypeScript & CSS
+          {t('footerBuilt')}
         </p>
       </div>
     </footer>

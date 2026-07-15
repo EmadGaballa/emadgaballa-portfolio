@@ -1,1 +1,0 @@
-import{j as o}from"./motion-B3UkOaAS.js";import{u as e}from"./i18n-CreKIBKh.js";function m({labelKey:n,ns:t="common",label:r,className:i=""}){const{t:a}=e(t),s=n?a(n):r||"";return s?o.jsx("div",{className:`section-intro ${i}`,children:o.jsx("span",{className:"section-intro-label",children:s})}):null}export{m as S};

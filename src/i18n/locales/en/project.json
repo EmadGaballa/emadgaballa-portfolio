@@ -17,5 +17,6 @@
   "backToWork": "Back to Projects",
   "type": "Type",
   "year": "Year",
-  "solo": "Solo Project"
+  "solo": "Solo Project",
+  "notFound": "Project not found"
 }
