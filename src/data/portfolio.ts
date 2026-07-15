@@ -5,7 +5,7 @@ export const portfolioData: PortfolioData = {
   initials: 'E.M.G',
   tagline: 'Full-Stack Developer',
   description:
-    'I build full-stack web applications with clean architecture, scalable backend systems, and responsive front-end interfaces. I turn complex ideas into fast, reliable, and production-ready digital products.',
+  'I engineer modern full-stack applications that blend exceptional user experiences with scalable backend systems. By combining clean architecture, secure APIs, and thoughtful design, I build digital products that are fast, reliable, and built to last.',
   email: 'emad.m.gaballa@gmail.com',
   phone: '+20 1210048828',
   location: 'Egypt',
