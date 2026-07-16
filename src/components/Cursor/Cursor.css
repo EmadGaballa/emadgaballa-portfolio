@@ -1,16 +1,16 @@
 /* ==========================================================================
    HIDE SYSTEM POINTER GLOBALLY
    ========================================================================== */
-html, 
+html,
 body {
   cursor: none !important;
 }
 
-a, 
-button, 
-input, 
-select, 
-textarea, 
+a,
+button,
+input,
+select,
+textarea,
 [role="button"],
 .cursor-target,
 [data-cursor-text] {
@@ -35,7 +35,8 @@ textarea,
 .cursor-dot {
   z-index: 99999;
   background: var(--cursor-bg);
-  mix-blend-mode: screen; 
+  background: var(--cursor-bg);
+  mix-blend-mode: normal;
 }
 
 .cursor-ring {
@@ -62,14 +63,14 @@ textarea,
    ========================================================================== */
 
 @media (hover: none) and (pointer: coarse) {
-  html, 
+  html,
   body,
-  a, 
+  a,
   button,
   .cursor-target {
     cursor: auto !important;
   }
-  
+
   .cursor-dot,
   .cursor-ring {
     display: none !important;

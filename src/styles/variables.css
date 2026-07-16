@@ -210,8 +210,8 @@
   --noise-opacity: 0.03;
   --scrollbar-track: #e2ddd3;
   --scrollbar-thumb: #a8845c;
-  --cursor-bg: #a8845c;
-  --cursor-ring: rgba(168, 132, 92, 0.3);
+  --cursor-bg: #a8855ce9;
+  --cursor-ring: rgba(168, 133, 92, 0.742);
   --selection-bg: #a8845c;
   --selection-text: #ffffff;
   --focus-ring: rgba(168, 132, 92, 0.4);
