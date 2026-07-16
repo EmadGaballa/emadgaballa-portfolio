@@ -11,9 +11,9 @@
   gap: 4px;
   padding: 20px 10px;
   border-radius: 14px;
-  background: rgba(16, 16, 20, 0.55);
+  background: var(--film-rail-bg);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--film-rail-shadow);
 }
 
 .film-rail-track {
@@ -66,7 +66,7 @@
 }
 
 .film-rail-btn:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--film-rail-btn-hover);
 }
 
 .film-rail-marker {
@@ -96,7 +96,7 @@
 }
 
 .film-rail-btn.is-active {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--film-rail-btn-active);
 }
 
 .film-rail-btn.is-active .film-rail-label,

@@ -93,7 +93,7 @@
 .resume-download {
   margin-top: 60px;
   padding-top: 40px;
-  border-top: 1px solid var(--border);
+  /* border-top: 1px solid var(--border); */
 }
 
 [dir="rtl"] .resume-timeline-item {

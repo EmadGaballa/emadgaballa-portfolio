@@ -1,11 +1,5 @@
 /* Structural Layout Design Engine Hooks & System Tokens */
 :root {
-  --nav-bg-initial: rgba(13, 13, 15, 0.15);
-  --nav-bg-scrolled: rgba(8, 8, 10, 0.75);
-  --nav-border-initial: rgba(255, 255, 255, 0.03);
-  --nav-border-scrolled: rgba(255, 255, 255, 0.08);
-  --nav-shadow-initial: 0 1px 0px rgba(255, 255, 255, 0.02);
-  --nav-shadow-scrolled: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0px rgba(255, 255, 255, 0.1);
   --nav-blur-initial: 4px;
   --nav-blur-scrolled: 24px;
   --nav-height-initial: 94px;
@@ -20,7 +14,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  background: var(--nav-progress-gradient);
   transform-origin: 0%;
   z-index: calc(var(--z-nav) + 10);
   pointer-events: none;
@@ -64,7 +58,7 @@
   left: 0;
   width: 100%;
   height: 200%;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+  background: var(--nav-ambient-glow);
   pointer-events: none;
   animation: slowPulse 12s infinite alternate linear;
 }
@@ -106,7 +100,7 @@
   font-size: 1.45rem;
   font-weight: 300;
   letter-spacing: 0.14em;
-  color: #ffffff;
+  color: var(--nav-text-primary);
   line-height: 1;
   transition: transform 0.4s ease;
 }
@@ -119,7 +113,7 @@
   font-family: var(--font-mono);
   font-size: 0.52rem;
   letter-spacing: 0.24em;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--nav-text-primary);
   margin-top: 5px;
   transition: opacity 0.3s ease;
 }
@@ -154,7 +148,7 @@
 .link-index {
   font-family: var(--font-mono);
   font-size: 0.55rem;
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--nav-link-index);
 }
 
 .link-title {
@@ -162,22 +156,22 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--nav-link-title);
   transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-dock-link:hover .link-title,
 .nav-dock-link.active .link-title {
-  color: #ffffff;
+  color: var(--nav-link-title-hover);
 }
 
 /* Sliding Interactive Nav Active Glass Pill Object */
 .active-glass-pill {
   position: absolute;
   inset: 4px 6px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.08);
+  background: var(--nav-glass-bg);
+  border: 1px solid var(--nav-glass-border);
+  box-shadow: var(--nav-glass-inset);
   border-radius: 6px;
   z-index: 1;
   pointer-events: none;
@@ -193,8 +187,8 @@
 .segmented-control {
   position: relative;
   display: flex;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: var(--nav-segment-bg);
+  border: 1px solid var(--nav-segment-border);
   padding: 2px;
   border-radius: 6px;
 }
@@ -214,20 +208,20 @@
 .segment-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--nav-segment-label);
   z-index: 2;
   transition: color 0.25s ease;
 }
 
 .segment-btn.active .segment-label {
-  color: #ffffff;
+  color: var(--nav-segment-active-label);
 }
 
 .segment-active-bg {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--nav-segment-active-bg);
+  border: 1px solid var(--nav-segment-active-border);
   border-radius: 4px;
   z-index: 1;
 }
@@ -238,13 +232,13 @@
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #000000;
-  background: #ffffff;
+  color: var(--nav-cta-text);
+  background: var(--nav-cta-bg);
   padding: 7px 16px; /* Optimized appropriate size to match standard segmented switches */
   border-radius: 6px;
   text-decoration: none;
   font-weight: 500;
-  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  box-shadow: var(--nav-cta-shadow);
   transition: box-shadow 0.3s ease;
   display: inline-flex;
   align-items: center;
@@ -252,7 +246,7 @@
 }
 
 .premium-magnetic-cta:hover {
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.12);
+  box-shadow: var(--nav-cta-hover-shadow);
 }
 
 /* Cinematic Mobile Overlay Window Shell Interface */
@@ -270,7 +264,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.16em;
-  color: #ffffff;
+  color: var(--nav-menu-text);
 }
 
 .cinematic-overlay-viewport {
@@ -286,7 +280,7 @@
 .overlay-blur-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(6, 6, 8, 0.85);
+  background: var(--nav-mobile-bg);
   backdrop-filter: blur(35px) saturate(1.6);
 }
 
@@ -304,7 +298,7 @@
   font-size: 4.8rem;
   font-weight: 300;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--nav-overlay-link);
   text-decoration: none;
   letter-spacing: 0.05em;
   display: flex;
@@ -314,14 +308,14 @@
 }
 
 .overlay-huge-link:hover {
-  color: #ffffff;
+  color: var(--nav-overlay-link-hover);
   transform: scale(1.03) rotateX(4deg);
 }
 
 .overlay-link-num {
   font-family: var(--font-mono);
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.15);
+  color: var(--nav-overlay-num);
   margin-top: 16px;
 }
 

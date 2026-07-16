@@ -2,15 +2,11 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-mobile);
-  background: rgba(10, 10, 12, 0.97);
+  background: var(--nav-mobile-bg);
   backdrop-filter: blur(30px);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-[data-theme="light"] .mobile-menu {
-  background: rgba(248, 246, 243, 0.97);
 }
 
 .mobile-menu-inner {

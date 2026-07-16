@@ -33,8 +33,10 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
   const prefersReducedMotion = useReducedMotionHook();
   const slug = project.slug;
   const p = (key: string) => t(`projects.${slug}.${key}`);
-  const pf = (i: number, key: string) => t(`projects.${slug}.features.${i}.${key}`, { defaultValue: "" });
-  const ps = (i: number, key: string) => t(`projects.${slug}.screenshots.${i}.${key}`, { defaultValue: "" });
+  const pf = (i: number, key: string) =>
+    t(`projects.${slug}.features.${i}.${key}`, { defaultValue: "" });
+  const ps = (i: number, key: string) =>
+    t(`projects.${slug}.screenshots.${i}.${key}`, { defaultValue: "" });
 
   // Parallax + clip-reveal for the hero image, driven by this reel's own
   // scroll position rather than the page's, so each chapter reveals on its
@@ -102,9 +104,8 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           className="reel-hero-img"
         />
         <div className="reel-hero-gradient" />
-        <span className="reel-hero-hint">
-          {t("viewLiveSite")} ↗
-        </span>
+        <div className="reel-hero-frame" />
+        <span className="reel-hero-hint">{t("viewLiveSite")} ↗</span>
       </motion.a>
 
       {/* ── The Challenge ──────────────────────────────────────────── */}
@@ -118,7 +119,9 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="reel-eyebrow">{t("problem")}</span>
-          <p className="reel-narrative-text reel-challenge-text">{projChallenge}</p>
+          <p className="reel-narrative-text reel-challenge-text">
+            {projChallenge}
+          </p>
         </motion.div>
 
         <motion.div
@@ -130,7 +133,9 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="reel-eyebrow">{t("solution")}</span>
-          <p className="reel-narrative-text reel-approach-text">{projApproach}</p>
+          <p className="reel-narrative-text reel-approach-text">
+            {projApproach}
+          </p>
         </motion.div>
       </div>
 
@@ -172,7 +177,9 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="reel-eyebrow">{t("development")}</span>
-          <p className="reel-narrative-text reel-engineering-text">{projEngineering}</p>
+          <p className="reel-narrative-text reel-engineering-text">
+            {projEngineering}
+          </p>
         </motion.div>
 
         <motion.div
@@ -229,9 +236,7 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="reel-eyebrow">{t("caseStudy")}</span>
-          <p className="reel-narrative-text reel-outcome-text">
-            {projOutcome}
-          </p>
+          <p className="reel-narrative-text reel-outcome-text">{projOutcome}</p>
           <p className="reel-lessons-text">{projLessons}</p>
         </motion.div>
 

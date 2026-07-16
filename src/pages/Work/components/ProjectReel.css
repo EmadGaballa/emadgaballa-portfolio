@@ -60,6 +60,25 @@
   padding-inline: max(1rem, 3vw);
   aspect-ratio: 16/9;
   overflow: hidden;
+  border-radius: 8px;
+  isolation: isolate; /* keeps the gradient/hint layering local to this box */
+}
+
+.reel-hero-frame {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: max(1rem, 3vw);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.reel-hero:hover .reel-hero-frame {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-xl);
 }
 
 .reel-hero-img {
@@ -69,21 +88,35 @@
   width: calc(100% - (max(1rem, 3vw) * 2));
   height: calc(100% + 120px);
   object-fit: cover;
-  filter: brightness(0.88) saturate(0.95);
-  border-radius: 4px;
+  filter: var(--reel-img-filter);
+  border-radius: 8px;
+  transition: transform 0.8s var(--ease), filter 0.5s;
+  will-change: transform;
+}
+
+.reel-hero:hover .reel-hero-img {
+  transform: scale(1.03);
+  filter: var(--reel-img-filter-hover);
 }
 
 .reel-hero-gradient {
   position: absolute;
   inset-block: 0;
   inset-inline: max(1rem, 3vw);
-  background: linear-gradient(
-    to top,
-    rgba(10, 10, 12, 0.55) 0%,
-    transparent 35%
-  );
+  background: var(--reel-hero-gradient);
   pointer-events: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-hero-img {
+    transition: none;
+  }
+
+  .reel-hero:hover .reel-hero-img {
+    transform: none;
+  }
 }
 
 .reel-hero-hint {
@@ -99,8 +132,8 @@
   gap: 8px;
   padding: 10px 18px;
   color: var(--text-1);
-  background: rgba(10, 10, 12, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: var(--reel-hint-bg);
+  border: 1px solid var(--reel-hint-border);
   backdrop-filter: blur(10px);
   border-radius: 2px;
   opacity: 0;
@@ -171,7 +204,7 @@
   font-size: 1rem;
   line-height: 1.8;
   letter-spacing: 0.01em;
-  color: var(--text-2, #d4d4d8);
+  color: var(--reel-engineering-text);
 }
 
 /* ── Feature sequence ──────────────────────────────────────────── */
@@ -213,7 +246,7 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
-  color: rgb(114, 114, 114);
+  color: var(--reel-feature-number);
   padding-top: 4px;
 }
 
@@ -282,11 +315,16 @@
 
 /* ── Editorial gallery ─────────────────────────────────────────── */
 
+/* ============================================================
+   CINEMATIC GALLERY GRID ENGINE
+   ============================================================ */
+
 .reel-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
-  grid-auto-rows: 1fr;
-  gap: clamp(3rem, 3vw, 3rem);
+  /* Clean responsive auto-fitting grids that preserve strict alignment dimensions */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  /* Fluid structural gap that opens up elegantly on larger screens */
+  gap: clamp(1.5rem, 4vw, 3rem); 
   margin: 0 auto clamp(4rem, 10vw, 8rem);
   max-width: 1150px;
   padding-inline: max(1rem, 3vw);
@@ -295,26 +333,89 @@
 .reel-gallery-item {
   position: relative;
   overflow: hidden;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  aspect-ratio: 16/10;
+  /* Deep obsidian/espresso canvas anchor preventing background flash while media loads */
+  background-color: #13110f; 
+  /* Ultra-fine espresso bounding outline */
+  border: 1px solid rgba(43, 37, 32, 0.08); 
+  border-radius: 6px;
+  aspect-ratio: 16 / 10;
   margin: 0;
+  isolation: isolate; /* Localizes and contains the internal vignette filtration layers */
+  cursor: pointer;
+  
+  will-change: transform, box-shadow, border-color;
+  transition: 
+    border-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: none !important;
 }
 
+/* 1. Cinematic Lens Layer */
 .reel-gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.9);
+  
+  /* Focus Pull physics: Subtle baseline blur and desaturation for a premium mood */
+  filter: grayscale(8%) contrast(96%) blur(0.5px);
+  transform: scale(1);
+  will-change: transform, filter;
   transition:
-    transform 0.6s var(--ease),
-    filter 0.4s;
+    transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    filter 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 2. Integrated Optical Grading & Vignette Overlay */
+.reel-gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Compresses lighting harshness at the edges while injecting a soft, 195-deg gold color grade */
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(20, 18, 16, 0) 50%, rgba(20, 18, 16, 0.35) 100%),
+    linear-gradient(195deg, rgba(223, 186, 137, 0.04) 0%, rgba(20, 18, 16, 0) 70%);
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 3. Multi-Dimensional Hover Interaction States */
+.reel-gallery-item:hover {
+  /* Wireframe illuminates into a crisp champagne finish */
+  border-color: rgba(223, 186, 137, 0.35); 
+  transform: translateY(-3px); /* Snappy weightless liftoff */
+  
+  /* Premium dual-layered drop shadow + ambient gold under-glow */
+  box-shadow: 
+    0 15px 35px -10px rgba(20, 18, 16, 0.15),
+    0 0 24px -6px rgba(223, 186, 137, 0.08);
 }
 
 .reel-gallery-item:hover img {
-  transform: scale(1.02);
-  filter: brightness(1);
+  transform: scale(1.03); /* Balanced camera dolly-in zoom */
+  filter: grayscale(0%) contrast(104%) blur(0px); /* Pulls tack-sharp into focus */
+}
+
+.reel-gallery-item:hover::after {
+  opacity: 0.8; /* Dissolves lighting masks to let image color pop forward */
+}
+
+/* ── Motion Accessibility Adjustments ── */
+@media (prefers-reduced-motion: reduce) {
+  .reel-gallery-item,
+  .reel-gallery-item img,
+  .reel-gallery-item::after {
+    transition: none !important;
+  }
+  
+  .reel-gallery-item:hover {
+    transform: none !important;
+  }
+  
+  .reel-gallery-item:hover img {
+    transform: none !important;
+  }
 }
 
 .reel-gallery-caption {
@@ -322,7 +423,7 @@
   bottom: 16px;
   inset-inline-start: 16px; /* Native alignment positioning */
   color: var(--text-2);
-  background: rgba(10, 10, 12, 0.75);
+  background: rgba(0, 0, 0, 0.797);
   backdrop-filter: blur(8px);
   padding: 8px 14px;
   border: 1px solid var(--border);
@@ -350,7 +451,7 @@
 .reel-lessons-text {
   font-size: 0.9rem;
   font-weight: 300;
-  color: rgba(164, 145, 98, 0.724);
+  color: var(--reel-lessons-text);
   font-style: italic;
   line-height: 1.7;
 }
@@ -372,7 +473,7 @@
   text-transform: uppercase;
 
   /* Apple Metallic Gradient */
-  background: linear-gradient(135deg, #f3e5ab 0%, #d3b142 50%, #aa7c11 100%);
+  background: var(--reel-eyebrow-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -383,7 +484,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #d1c393;
+  color: var(--reel-header-meta);
 }
 
 .reel-hero-hint,
@@ -393,7 +494,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgb(199, 186, 119);
+  color: var(--reel-hero-hint-text);
 }
 
 /* ── Sequence transition to next chapter ───────────────────────── */
@@ -429,7 +530,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.8);
+  filter: var(--project-img-filter);
   transition: transform 0.6s var(--ease);
 }
 
@@ -468,7 +569,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .reel-hero-img {
-    filter: brightness(0.88) saturate(0.95) !important;
+    filter: var(--reel-img-filter) !important;
     transform: none !important;
   }
 }
