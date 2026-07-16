@@ -8,6 +8,7 @@ import './Project.css';
 export default function Project() {
   const { slug: paramSlug } = useParams<{ slug: string }>();
   const { t } = useTranslation('project');
+  const { t: tw } = useTranslation('work');
   const project = projects.find((p) => p.slug === paramSlug);
 
   if (!project) {
@@ -26,9 +27,9 @@ export default function Project() {
   }
 
   const slug = project.slug;
-  const p = (key: string) => t(`projects.${slug}.${key}`, { defaultValue: "" });
-  const pf = (i: number, key: string) => t(`projects.${slug}.features.${i}.${key}`, { defaultValue: "" });
-  const ps = (i: number, key: string) => t(`projects.${slug}.screenshots.${i}.${key}`, { defaultValue: "" });
+  const p = (key: string) => tw(`projects.${slug}.${key}`, { defaultValue: "" });
+  const pf = (i: number, key: string) => tw(`projects.${slug}.features.${i}.${key}`, { defaultValue: "" });
+  const ps = (i: number, key: string) => tw(`projects.${slug}.screenshots.${i}.${key}`, { defaultValue: "" });
 
   return (
     <PageTransition>
@@ -54,6 +55,13 @@ export default function Project() {
             <h2 className="heading-3">{t('overview')}</h2>
             <p className="body-base project-text">{p("overview")}</p>
           </div>
+
+          {project.problem && (
+            <div className="project-section">
+              <h2 className="heading-3">{t('problem')}</h2>
+              <p className="body-base project-text">{p("problem")}</p>
+            </div>
+          )}
 
           <div className="project-section">
             <h2 className="heading-3" dangerouslySetInnerHTML={{ __html: t('features') }} />
