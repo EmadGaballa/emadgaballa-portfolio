@@ -210,7 +210,7 @@
   --noise-opacity: 0.03;
   --scrollbar-track: #e2ddd3;
   --scrollbar-thumb: #a8845c;
-  --cursor-bg: #a8855ce9;
+  --cursor-bg: #a8855ce0;
   --cursor-ring: rgba(168, 133, 92, 0.742);
   --selection-bg: #a8845c;
   --selection-text: #ffffff;
@@ -272,7 +272,7 @@
   /* Reel tokens (light) */
   --reel-hardware-bg: rgba(236, 231, 223, 0.65);
   --reel-hardware-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --reel-hint-bg: rgba(236, 231, 223, 0.8);
+  --reel-hint-bg: rgba(239, 235, 230, 0.8);
   --reel-hint-border: rgba(0, 0, 0, 0.18);
   --reel-caption-bg: rgba(236, 231, 223, 0.88);
   --reel-header-meta: #8b7355;

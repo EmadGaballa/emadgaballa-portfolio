@@ -44,11 +44,17 @@ const resources = {
   },
 };
 
-const savedLang = typeof window !== 'undefined' ? localStorage.getItem('lang') : null;
+// Clear environment execution isolation
+const getSavedLanguageFallback = (): string => {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('lang') || 'en';
+  }
+  return 'en';
+};
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: savedLang || 'en',
+  lng: getSavedLanguageFallback(),
   fallbackLng: 'en',
   ns: [
     'common',

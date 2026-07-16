@@ -225,19 +225,33 @@
   text-transform: uppercase;
   color: var(--nav-cta-text);
   background: var(--nav-cta-bg);
-  padding: 7px 16px;
+  
+  
+  padding: 9px 20px; 
+  line-height: 1; 
+  
   border-radius: 6px;
   text-decoration: none;
   font-weight: 500;
-  box-shadow: var(--nav-cta-shadow);
-  transition: box-shadow 0.3s ease;
+  
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  
+  /* Smooth micro-interactions */
+  transition: 
+    box-shadow 0.3s ease, 
+    background-color 0.3s ease, 
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .premium-magnetic-cta:hover {
   box-shadow: var(--nav-cta-hover-shadow);
+}
+
+.premium-magnetic-cta:active {
+  transform: scale(0.97);
 }
 
 /* Clean & Balanced Hamburger Menu Trigger */

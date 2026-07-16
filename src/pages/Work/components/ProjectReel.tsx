@@ -91,18 +91,36 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
         target="_blank"
         rel="noopener"
         className="reel-hero"
-        initial={{ clipPath: "inset(0 0 100% 0)" }}
-        whileInView={{ clipPath: "inset(0 0 0% 0)" }}
+        initial="hidden"
+        whileInView="visible"
+        whileHover="hover" // Fix: Let child nodes inherit parent hover state context safely
         viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        variants={{
+          hidden: { clipPath: "inset(0 0 100% 0)" },
+          visible: {
+            clipPath: "inset(0 0 0% 0)",
+            transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
+          },
+        }}
       >
-        <motion.img
-          src={project.heroImage}
-          alt={project.title}
-          loading="lazy"
-          style={{ y: heroY }}
-          className="reel-hero-img"
-        />
+        {/* Parallax Container: Solely dedicated to handle the vertical scroll vector */}
+        <motion.div className="reel-hero-parallax-wrapper" style={{ y: heroY }}>
+          {/* Image Asset: Solely dedicated to handle the pristine hover scale */}
+          <motion.img
+            src={project.heroImage}
+            alt={project.title}
+            loading="lazy"
+            className="reel-hero-img"
+            variants={{
+              hover: { scale: 1.03 }, // Subtle, high-end dolly zoom value
+            }}
+            transition={{
+              duration: 0.75, // Slow, elegant ease transition both in and out
+              ease: [0.25, 1, 0.5, 1], // Clean cinematic cubic-bezier curves
+            }}
+          />
+        </motion.div>
+
         <div className="reel-hero-gradient" />
         <div className="reel-hero-frame" />
         <span className="reel-hero-hint">{t("viewLiveSite")} ↗</span>

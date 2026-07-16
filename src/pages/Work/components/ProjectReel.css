@@ -61,9 +61,10 @@
   aspect-ratio: 16/9;
   overflow: hidden;
   border-radius: 8px;
-  isolation: isolate; /* keeps the gradient/hint layering local to this box */
+  isolation: isolate; /* Localizes all internal stacking contexts */
 }
 
+/* 1. The Glowing Frame (Kept exactly as you designed, layered on top) */
 .reel-hero-frame {
   position: absolute;
   inset-block: 0;
@@ -72,33 +73,45 @@
   border-radius: 8px;
   box-shadow: var(--shadow-lg);
   pointer-events: none;
-  z-index: 2;
+  z-index: 10; /* Boosted to sit cleanly over the moving parallax image */
   transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
+/* Glow ignition on hover */
 .reel-hero:hover .reel-hero-frame {
   border-color: var(--border-glow);
   box-shadow: var(--shadow-xl);
 }
 
-.reel-hero-img {
+/* 2. Parallax Wrapper (The structural cushion for vertical scroll) */
+.reel-hero-parallax-wrapper {
   position: absolute;
-  inset-block: -60px;
+  inset-block: -60px; /* Oversized buffer room for the parallax shift */
   inset-inline: max(1rem, 3vw);
   width: calc(100% - (max(1rem, 3vw) * 2));
   height: calc(100% + 120px);
+  will-change: transform;
+  border-radius: 8px;
+  overflow: hidden; /* Contains the zoom matrix within the parallax boundaries */
+  z-index: 1;
+}
+
+/* 3. The Image Asset (Handles the subtle Apple/Awwwards dolly zoom) */
+.reel-hero-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   filter: var(--reel-img-filter);
-  border-radius: 8px;
-  transition: transform 0.8s var(--ease), filter 0.5s;
+  transform-origin: center center;
+  transition: filter 0.6s ease;
   will-change: transform;
 }
 
 .reel-hero:hover .reel-hero-img {
-  transform: scale(1.03);
   filter: var(--reel-img-filter-hover);
 }
 
+/* 4. Overlays & Hints */
 .reel-hero-gradient {
   position: absolute;
   inset-block: 0;
@@ -106,27 +119,25 @@
   background: var(--reel-hero-gradient);
   pointer-events: none;
   border-radius: 8px;
-  z-index: 1;
+  z-index: 2;
 }
 
+/* Motion Accessibility Safeguard */
 @media (prefers-reduced-motion: reduce) {
   .reel-hero-img {
     transition: none;
+    filter: var(--reel-img-filter) !important;
+    transform: none !important;
   }
-
   .reel-hero:hover .reel-hero-img {
-    transform: none;
+    transform: none !important;
   }
 }
 
 .reel-hero-hint {
   position: absolute;
   bottom: clamp(1rem, 3vw, 1.75rem);
-  inset-inline-end: clamp(
-    1.5rem,
-    4vw,
-    2.75rem
-  ); /* Flips sides natively for LTR/RTL */
+  inset-inline-end: clamp(1.5rem, 4vw, 2.75rem);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -143,11 +154,14 @@
     transform 0.35s var(--ease),
     border-color 0.3s;
   pointer-events: none;
+  z-index: 11; /* Sits above the glowing frame */
 }
 
 .reel-hero:hover .reel-hero-hint {
   opacity: 1;
   transform: translateY(0);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .reel-hero:hover .reel-hero-hint,
@@ -155,10 +169,6 @@
   border-color: var(--border);
 }
 
-.reel-hero:hover .reel-hero-hint {
-  border-color: var(--accent);
-  color: var(--accent);
-}
 
 /* ── Narrative blocks (challenge / solution) ───────────────────── */
 
@@ -358,7 +368,7 @@
   object-fit: cover;
   
   /* Focus Pull physics: Subtle baseline blur and desaturation for a premium mood */
-  filter: grayscale(8%) contrast(96%) blur(0.5px);
+  filter: grayscale(8%) contrast(96%);
   transform: scale(1);
   will-change: transform, filter;
   transition:

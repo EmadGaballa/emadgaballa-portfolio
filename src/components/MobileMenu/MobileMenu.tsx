@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { useTheme } from '@/contexts/ThemeContext';
-import { NavItem } from '@/types';
-import './MobileMenu.css';
+import { useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@/contexts/ThemeContext";
+import { NavItem } from "@/types";
+import "./MobileMenu.css";
 
 interface Props {
   items: NavItem[];
@@ -14,49 +14,49 @@ interface Props {
 
 const backdropVariants = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
-    transition: { duration: 0.25, ease: 'easeOut' }
+    transition: { duration: 0.25, ease: "easeOut" },
   },
-  exit: { 
+  exit: {
     opacity: 0,
-    transition: { duration: 0.2, ease: 'easeIn' }
-  }
+    transition: { duration: 0.2, ease: "easeIn" },
+  },
 };
 
 const sheetVariants = {
   hidden: { opacity: 0, y: 24, scale: 0.98 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     scale: 1,
-    transition: { 
-      duration: 0.35, 
+    transition: {
+      duration: 0.35,
       ease: [0.16, 1, 0.3, 1],
       staggerChildren: 0.04,
-      delayChildren: 0.05
-    }
+      delayChildren: 0.05,
+    },
   },
-  exit: { 
-    opacity: 0, 
-    y: 16, 
+  exit: {
+    opacity: 0,
+    y: 16,
     scale: 0.99,
-    transition: { duration: 0.2, ease: 'easeIn' }
-  }
+    transition: { duration: 0.2, ease: "easeIn" },
+  },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, x: -12 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
-    transition: { duration: 0.3, ease: 'easeOut' }
+    transition: { duration: 0.3, ease: "easeOut" },
   },
-  exit: { opacity: 0, x: 8 }
+  exit: { opacity: 0, x: 8 },
 };
 
 export default function MobileMenu({ items, isOpen, onClose }: Props) {
-  const { t, i18n } = useTranslation(['navigation', 'common']);
+  const { t, i18n } = useTranslation(["navigation", "common"]);
   const { theme, setTheme } = useTheme();
   const location = useLocation();
   const backdropRef = useRef<HTMLDivElement>(null);
@@ -72,16 +72,16 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
   useEffect(() => {
     if (!isOpen) return;
 
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     backdropRef.current?.focus();
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       onClose();
     }
   };
@@ -90,13 +90,14 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          key="mobile-menu-backdrop"
           ref={backdropRef}
           className="mobile-menu-backdrop"
           variants={backdropVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
-          onClick={onClose} // Clicking anywhere on the blurred background closes it
+          onClick={onClose} 
           onKeyDown={handleKeyDown}
           role="dialog"
           aria-modal="true"
@@ -115,7 +116,7 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
               <button
                 className="mobile-menu-close"
                 onClick={onClose}
-                aria-label={t('common:close')}
+                aria-label={t("common:close")}
               >
                 <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
                   <path
@@ -131,19 +132,19 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
             {/* Navigation Items */}
             <nav className="mobile-menu-nav">
               {items.map((item, index) => (
-                <motion.div 
-                  key={item.path} 
-                  variants={itemVariants}
-                >
-                  <Link
-                    to={item.path}
-                    className="mobile-menu-item"
-                  >
+                <motion.div key={item.path} variants={itemVariants}>
+                  <Link to={item.path} className="mobile-menu-item">
                     <span className="item-number">{`0${index + 1}`}</span>
                     <span className="item-label">
-                      {t(item.labelKey.replace('navigation:', ''))}
+                      {t(item.labelKey.replace("navigation:", ""))}
                     </span>
-                    <svg className="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <svg
+                      className="item-arrow"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
                       <path
                         d="M6 3L11 8L6 13"
                         stroke="currentColor"
@@ -161,23 +162,29 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
             <div className="mobile-menu-controls">
               {/* Language Switcher */}
               <div className="control-section">
-                <span className="control-label">{t('common:language', 'Language')}</span>
+                <span className="control-label">
+                  {t("common:language", "Language")}
+                </span>
                 <div className="segmented-control">
-                  {['en', 'ar'].map((language) => (
+                  {["en", "ar"].map((language) => (
                     <button
                       key={language}
                       type="button"
                       onClick={() => i18n.changeLanguage(language)}
-                      className={`segment-btn ${i18n.language === language ? 'active' : ''}`}
+                      className={`segment-btn ${i18n.language === language ? "active" : ""}`}
                     >
                       <span className="segment-label">
-                        {language === 'en' ? 'English' : 'العربية'}
+                        {language === "en" ? "English" : "العربية"}
                       </span>
                       {i18n.language === language && (
                         <motion.div
                           layoutId="mobile-lang-pill"
                           className="segment-active-bg"
-                          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
                         />
                       )}
                     </button>
@@ -187,21 +194,29 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
 
               {/* Theme Switcher */}
               <div className="control-section">
-                <span className="control-label">{t('common:theme', 'Theme')}</span>
+                <span className="control-label">
+                  {t("common:theme", "Theme")}
+                </span>
                 <div className="segmented-control">
-                  {(['light', 'dark'] as const).map((themeMode) => (
+                  {(["light", "dark"] as const).map((themeMode) => (
                     <button
                       key={themeMode}
                       type="button"
                       onClick={() => setTheme(themeMode)}
-                      className={`segment-btn ${theme === themeMode ? 'active' : ''}`}
+                      className={`segment-btn ${theme === themeMode ? "active" : ""}`}
                     >
-                      <span className="segment-label capitalize">{themeMode}</span>
+                      <span className="segment-label capitalize">
+                        {themeMode}
+                      </span>
                       {theme === themeMode && (
                         <motion.div
                           layoutId="mobile-theme-pill"
                           className="segment-active-bg"
-                          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
                         />
                       )}
                     </button>
@@ -218,7 +233,7 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
               className="mobile-menu-cta"
               variants={itemVariants}
             >
-              <span className="cta-text">{t('common:letsBuild')} →</span>
+              <span className="cta-text">{t("common:letsBuild")} →</span>
             </motion.a>
           </motion.div>
         </motion.div>
