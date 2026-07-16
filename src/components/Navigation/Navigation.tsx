@@ -28,7 +28,7 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
 
   // Guard track: Keeps wrapper rigid and pinned when mobile layer overlay triggers
   useMotionValueEvent(scrollY, "change", (latest) => {

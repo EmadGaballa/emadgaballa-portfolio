@@ -99,7 +99,7 @@ export const projects: Project[] = [
       "GitHub",
       "ESLint",
     ],
-    liveUrl: "https://https://flickfinder-emg.vercel.app/",
+    liveUrl: "https://flickfinder-emg.vercel.app/",
     githubUrl: "https://github.com/EmadGaballa/FlickFinder-app",
   },
   {
@@ -208,8 +208,8 @@ export const projects: Project[] = [
       "Responsive Design",
     ],
 
-    liveUrl: "https://geoboard-by-emadgaballa.vercel.app/",
-    githubUrl: "https://github.com/EmadGaballa/GEOBOARD",
+    liveUrl: "https://geoboard-app.vercel.app/",
+    githubUrl: "https://github.com/EmadGaballa/GeoBoard-App",
   },
   {
     slug: "fortress-ird",
