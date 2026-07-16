@@ -1,60 +1,239 @@
-.mobile-menu {
+/* Enhanced Mobile Menu Layout Engine */
+.mobile-menu-backdrop {
   position: fixed;
   inset: 0;
-  z-index: var(--z-mobile);
+  z-index: 999999 !important; /* Force layout context over any sticky headers or canvas elements */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px) saturate(1.4);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+  pointer-events: auto;
+}
+
+.mobile-menu-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: min(8vh, 60px) 16px;
   background: var(--nav-mobile-bg);
-  backdrop-filter: blur(30px);
+  border: 1px solid var(--nav-border-scrolled);
+  border-radius: 24px;
+  box-shadow: 
+    0 32px 64px -16px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-height: calc(100dvh - 120px);
+  overflow-y: auto;
+  pointer-events: auto;
+}
+
+/* Header & Close Area */
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--nav-border-scrolled);
+}
+
+.brand-text {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--nav-text-primary);
+}
+
+/* Fix: Expanded close touch target to 44x44px mobile safety metric */
+.mobile-menu-close {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--nav-glass-bg);
+  border: 1px solid var(--nav-glass-border);
+  border-radius: 12px;
+  color: var(--nav-text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  pointer-events: auto;
 }
 
-.mobile-menu-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 48px;
-  padding: 24px;
+.mobile-menu-close:strong-active,
+.mobile-menu-close:active {
+  transform: scale(0.95);
 }
 
-.mobile-menu-controls {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
+/* Navigation System Links */
 .mobile-menu-nav {
   display: flex;
   flex-direction: column;
+  gap: 6px;
+}
+
+.mobile-menu-item {
+  display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
+  padding: 16px 14px;
+  text-decoration: none;
+  color: var(--nav-text-primary);
+  border-radius: 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  pointer-events: auto;
 }
 
-.mobile-menu-link {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--text-1);
-  transition: color 0.3s;
+.mobile-menu-item:hover {
+  background: var(--nav-glass-bg);
+  border-color: var(--nav-glass-border);
 }
 
-.mobile-menu-link:hover {
-  color: var(--accent);
-}
-
-.mobile-menu-cta {
+.item-number {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 14px 36px;
-  border-radius: var(--radius-sm);
-  transition: background 0.3s, color 0.3s;
+  font-size: 0.7rem;
+  color: var(--nav-link-index);
+  min-width: 24px;
 }
 
-.mobile-menu-cta:hover {
-  background: var(--accent);
-  color: var(--text-inverse);
+.item-label {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--nav-link-title);
+  flex: 1;
+}
+
+.item-arrow {
+  color: var(--nav-link-index);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+/* Control Systems & Segment Toggles */
+.mobile-menu-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 20px;
+  border-top: 1px solid var(--nav-border-scrolled);
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--nav-text-secondary);
+}
+
+.segmented-control {
+  position: relative;
+  display: flex;
+  background: var(--nav-segment-bg);
+  border: 1px solid var(--nav-segment-border);
+  padding: 4px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.segment-btn {
+  position: relative;
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--nav-segment-label);
+  z-index: 2;
+  pointer-events: auto; /* Ensure buttons remain explicitly clickable */
+}
+
+.segment-btn.active {
+  color: var(--nav-segment-active-label);
+}
+
+.segment-label {
+  position: relative;
+  z-index: 3;
+}
+
+/* Fix: Added pointer-events none so the active animation block never eats user touch actions */
+.segment-active-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--nav-segment-active-bg);
+  border: 1px solid var(--nav-segment-active-border);
+  border-radius: 8px;
+  z-index: 1;
+  pointer-events: none !important; 
+}
+
+/* Call To Action Block */
+.mobile-menu-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+  background: var(--nav-cta-bg);
+  color: var(--nav-cta-text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: var(--nav-cta-shadow);
+  transition: all 0.2s ease;
+  pointer-events: auto;
+}
+
+/* Full-Screen Compact Layout Adapters */
+@media (max-width: 576px) {
+  .mobile-menu-sheet {
+    margin: 0;
+    border-radius: 0;
+    max-height: 100dvh;
+    height: 100dvh;
+    padding: 24px 20px;
+  }
+
+  .mobile-menu-backdrop {
+    align-items: flex-end;
+  }
+}
+
+/* Right-To-Left Text Flow Mapping */
+[dir="rtl"] .mobile-menu-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .item-arrow {
+  transform: rotate(180deg);
 }

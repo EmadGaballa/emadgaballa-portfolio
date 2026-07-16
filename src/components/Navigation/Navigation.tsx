@@ -1,37 +1,36 @@
-import { useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useTheme } from '@/contexts/ThemeContext';
-import { 
-  motion, 
-  AnimatePresence, 
-  useScroll, 
-  useMotionValueEvent, 
-  useMotionValue, 
-  useSpring, 
-  useTransform 
-} from 'framer-motion';
-import './Navigation.css';
+import { useState, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@/contexts/ThemeContext";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import MobileMenu from "@/components/MobileMenu/MobileMenu";
+import "./Navigation.css";
 
 const navItems = [
-  { path: '/about', labelKey: 'navigation:about' },
-  { path: '/work', labelKey: 'navigation:work' },
-  { path: '/skills', labelKey: 'navigation:skills' },
-  { path: '/resume', labelKey: 'navigation:resume' },
-  { path: '/contact', labelKey: 'navigation:contact' },
+  { path: "/about", labelKey: "navigation:about" },
+  { path: "/work", labelKey: "navigation:work" },
+  { path: "/skills", labelKey: "navigation:skills" },
+  { path: "/resume", labelKey: "navigation:resume" },
+  { path: "/contact", labelKey: "navigation:contact" },
 ];
 
 export default function Navigation() {
-  const { t, i18n } = useTranslation(['navigation', 'common']);
+  const { t, i18n } = useTranslation(["navigation", "common"]);
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
 
-  // Handle hide-on-scroll logic flawlessly for full-width layouts
+  // Guard track: Keeps wrapper rigid and pinned when mobile layer overlay triggers
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (latest > previous && latest > 150) {
@@ -41,9 +40,6 @@ export default function Navigation() {
     }
     setScrolled(latest > 50);
   });
-
-  // Reading progress line tracking
-  const readingProgress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   // Magnetic Button Spring System
   const ctaRef = useRef<HTMLAnchorElement>(null);
@@ -58,7 +54,7 @@ export default function Navigation() {
     const { left, top, width, height } = ctaRef.current.getBoundingClientRect();
     const currentX = e.clientX - (left + width / 2);
     const currentY = e.clientY - (top + height / 2);
-    mouseX.set(currentX * 0.15); // Fine-tuned 6px threshold
+    mouseX.set(currentX * 0.15);
     mouseY.set(currentY * 0.15);
   };
 
@@ -67,28 +63,20 @@ export default function Navigation() {
     mouseY.set(0);
   };
 
-  const toggleLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-  };
-
   return (
     <>
-      {/* Precision Top-Border Page Reading Progress Indicator */}
-      <motion.div 
-        className="nav-global-progress" 
-        style={{ scaleX: scrollYProgress }} 
-      />
+      <motion.div className="nav-global-progress" style={{ scaleX: scrollY }} />
 
-      <motion.nav 
+      <motion.nav
         variants={{
           visible: { y: 0, opacity: 1 },
-          hidden: { y: '-100%', opacity: 0 } // Completely hides edge-to-edge container cleanly
+          hidden: { y: "-100%", opacity: 0 },
         }}
+        /* Fixed: Keeps the bar securely visible if the mobile sheet is open */
         animate={hidden && !mobileOpen ? "hidden" : "visible"}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className={`nav-container ${scrolled ? 'scrolled' : ''}`}
+        className={`nav-container ${scrolled ? "scrolled" : ""}`}
       >
-        {/* Subtle, drifting interior ambient backlight */}
         <div className="nav-ambient-glow" />
 
         <div className="nav-wrapper">
@@ -96,7 +84,7 @@ export default function Navigation() {
           <Link to="/" className="nav-brand-group">
             <div className="brand-typography">
               <span className="brand-main">EMG</span>
-              <span className="brand-sub">{t('common:brandSub')}</span>
+              <span className="brand-sub">{t("common:brandSub")}</span>
             </div>
           </Link>
 
@@ -108,22 +96,28 @@ export default function Navigation() {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`nav-dock-link ${isActive ? 'active' : ''}`}
+                  className={`nav-dock-link ${isActive ? "active" : ""}`}
                 >
-                  <motion.div 
-                    whileHover={{ y: -2, letterSpacing: '0.14em' }}
-                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                  <motion.div
+                    whileHover={{ y: -2, letterSpacing: "0.14em" }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
                     className="link-text-wrapper"
                   >
                     <span className="link-index">{`0${index + 1}`}</span>
-                    <span className="link-title">{t(item.labelKey.replace('navigation:', ''))}</span>
+                    <span className="link-title">
+                      {t(item.labelKey.replace("navigation:", ""))}
+                    </span>
                   </motion.div>
-                  
+
                   {isActive && (
-                    <motion.div 
+                    <motion.div
                       layoutId="active-dock-pill"
                       className="active-glass-pill"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </Link>
@@ -133,34 +127,41 @@ export default function Navigation() {
 
           {/* Right Utilities Control Group */}
           <div className="nav-utilities-group">
-            
-            {/* Apple-inspired Segmented Language Switcher */}
+            {/* Language Switcher */}
             <div className="segmented-control lang-control">
-              {['en', 'ar'].map((lang) => (
+              {["en", "ar"].map((lang) => (
                 <button
                   key={lang}
-                  onClick={() => toggleLanguage(lang)}
-                  className={`segment-btn ${i18n.language === lang ? 'active' : ''}`}
+                  onClick={() => i18n.changeLanguage(lang)}
+                  className={`segment-btn ${i18n.language === lang ? "active" : ""}`}
                 >
-                  <span className="segment-label">{lang === 'en' ? 'English' : 'العربية'}</span>
+                  <span className="segment-label">
+                    {lang === "en" ? "English" : "العربية"}
+                  </span>
                   {i18n.language === lang && (
-                    <motion.div layoutId="lang-pill" className="segment-active-bg" />
+                    <motion.div
+                      layoutId="lang-pill"
+                      className="segment-active-bg"
+                    />
                   )}
                 </button>
               ))}
             </div>
 
-            {/* Apple-inspired Theme Mode Toggle */}
+            {/* Theme Mode Toggle */}
             <div className="segmented-control theme-control">
-              {(['light', 'dark'] as const).map((tMode) => (
+              {(["light", "dark"] as const).map((tMode) => (
                 <button
                   key={tMode}
                   onClick={() => setTheme(tMode)}
-                  className={`segment-btn ${theme === tMode ? 'active' : ''}`}
+                  className={`segment-btn ${theme === tMode ? "active" : ""}`}
                 >
                   <span className="segment-label capitalize">{tMode}</span>
                   {theme === tMode && (
-                    <motion.div layoutId="theme-pill" className="segment-active-bg" />
+                    <motion.div
+                      layoutId="theme-pill"
+                      className="segment-active-bg"
+                    />
                   )}
                 </button>
               ))}
@@ -177,56 +178,32 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className="premium-magnetic-cta"
             >
-              <span className="cta-inner-text">{t('common:letsBuild')} →</span>
+              <span className="cta-inner-text">{t("common:letsBuild")} →</span>
             </motion.a>
 
             {/* Cinematic Full Screen Mobile Toggle */}
-            <button 
-              className={`cinematic-menu-trigger ${mobileOpen ? 'open' : ''}`}
+            <button
+              className={`cinematic-menu-trigger ${mobileOpen ? "open" : ""}`}
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle Navigation Shell"
+              aria-label={mobileOpen ? t("common:close") : t("common:menu")}
+              aria-expanded={mobileOpen}
             >
-              <span className="menu-trigger-text">{mobileOpen ? t('common:close') : t('common:menu')}</span>
+              <div className="burger-box">
+                <span className="burger-line line-top" />
+                <span className="burger-line line-mid" />
+                <span className="burger-line line-bot" />
+              </div>
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Cinematic Mobile Screen Overlay Viewport Context */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="cinematic-overlay-viewport"
-          >
-            <div className="overlay-blur-backdrop" />
-            <nav className="overlay-links-wrapper">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.path}
-                  initial={{ opacity: 0, y: 40, rotateX: -15 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="overlay-link-container"
-                >
-                  <Link 
-                    to={item.path} 
-                    onClick={() => setMobileOpen(false)}
-                    className="overlay-huge-link"
-                  >
-                    <span className="overlay-link-num">{`0${index + 1}`}</span>
-                    {t(item.labelKey.replace('navigation:', ''))}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Premium Mobile Menu Sheet */}
+      <MobileMenu
+        items={navItems}
+        isOpen={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+      />
     </>
   );
 }
