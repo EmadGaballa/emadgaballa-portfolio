@@ -13,6 +13,6 @@ export const portfolioData: PortfolioData = {
   linkedin: 'https://www.linkedin.com/in/emad-gaballa/',
   whatsapp: 'https://wa.me/201210048828',
   resume:
-    'https://drive.google.com/file/d/144L4J3l26IRm8UaPSolCpZqwCOjOaKSG/view?usp=sharing',
+    'https://drive.google.com/file/d/1Y5MOKwvul_YZTZgTqkkNNHqTs4eVH4Ei/view?usp=drive_link',
   availability: 'Available for work',
 };
