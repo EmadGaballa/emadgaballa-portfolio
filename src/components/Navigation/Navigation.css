@@ -19,7 +19,7 @@
   pointer-events: none;
 }
 
-/* Edge-to-Edge Adaptive Nav Shell Frame Context */
+/* Nav Shell Frame Context */
 .nav-container {
   position: fixed;
   top: 0;
@@ -239,7 +239,6 @@
   justify-content: center;
   white-space: nowrap;
   
-  /* Smooth micro-interactions */
   transition: 
     box-shadow 0.3s ease, 
     background-color 0.3s ease, 
@@ -254,12 +253,12 @@
   transform: scale(0.97);
 }
 
-/* Clean & Balanced Hamburger Menu Trigger */
+/* Hamburger Menu Trigger */
 .cinematic-menu-trigger {
-  display: none; /* Controlled by media query below */
-  background: transparent; /* Completely removed the circle background */
-  border: none;            /* Completely removed the circle border */
-  width: 44px;             /* Invisible touch safety box */
+  display: none; 
+  background: transparent; 
+  border: none;           
+  width: 44px;            
   height: 44px;
   align-items: center;
   justify-content: center;
@@ -271,24 +270,23 @@
   padding: 0;
 }
 
-/* Snappy feedback when tapped */
 .cinematic-menu-trigger:active {
   transform: scale(0.9);
 }
 
-/* Perfectly Balanced Centralized Container */
+/* Centralized Container */
 .burger-box {
   width: 20px;
   height: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center; /* Ensures absolute dead-center alignment */
+  align-items: center; 
 }
 
-/* Premium Motion Interpolation for Burger Lines */
+/* Premium Motion Interpolation */
 .burger-line {
-  width: 100%; /* Symmetrical lines to eliminate any weird optical off-centering */
+  width: 100%; 
   height: 2px;
   background-color: var(--nav-text-primary);
   border-radius: 4px;
@@ -299,7 +297,7 @@
     opacity 0.2s ease;
 }
 
-/* Clean Morphing Transformations to a Perfect "X" */
+/* Morphing Transformations*/
 .cinematic-menu-trigger.open .line-top {
   transform: translateY(6px) rotate(45deg);
 }
@@ -316,7 +314,7 @@
 /* Media Query Responsive Bridge */
 @media (max-width: 1240px) {
   .cinematic-menu-trigger {
-    display: flex; /* Activates cleanly on mobile viewports */
+    display: flex; 
   }
 }
 

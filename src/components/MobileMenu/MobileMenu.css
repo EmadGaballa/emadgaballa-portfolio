@@ -2,7 +2,7 @@
 .mobile-menu-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 999999 !important; /* Force layout context over any sticky headers or canvas elements */
+  z-index: 999999 !important; 
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(12px) saturate(1.4);
   display: flex;
@@ -52,7 +52,6 @@
   color: var(--nav-text-primary);
 }
 
-/* Fix: Expanded close touch target to 44x44px mobile safety metric */
 .mobile-menu-close {
   display: flex;
   align-items: center;
@@ -170,7 +169,7 @@
   font-size: 0.8rem;
   color: var(--nav-segment-label);
   z-index: 2;
-  pointer-events: auto; /* Ensure buttons remain explicitly clickable */
+  pointer-events: auto; 
 }
 
 .segment-btn.active {
@@ -182,7 +181,6 @@
   z-index: 3;
 }
 
-/* Fix: Added pointer-events none so the active animation block never eats user touch actions */
 .segment-active-bg {
   position: absolute;
   inset: 0;

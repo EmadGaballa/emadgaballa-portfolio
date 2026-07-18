@@ -99,7 +99,7 @@ export default function Cursor() {
             style={{ 
               x: dotX, 
               y: dotY,
-              translateX: "-50%", // Framer Motion compiles this cleanly with x/y
+              translateX: "-50%", 
               translateY: "-50%" 
             }}
             animate={variant}
@@ -111,7 +111,7 @@ export default function Cursor() {
             style={{ 
               x: ringX, 
               y: ringY,
-              translateX: "-50%", // Keeps the changing dynamic sizes perfectly anchored centered
+              translateX: "-50%", 
               translateY: "-50%" 
             }}
             animate={variant}

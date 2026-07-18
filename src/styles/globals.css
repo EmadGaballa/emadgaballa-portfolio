@@ -24,7 +24,6 @@ body {
   }
 }
 
-/* ─── Ensure sections are above noise ─── */
 section, header, footer, nav {
   position: relative;
   z-index: 1;

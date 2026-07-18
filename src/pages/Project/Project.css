@@ -27,9 +27,7 @@
 
 .project-hero-image {
   width: 90%;
-  /* Scaled down to a focused desktop width—creates beautiful editorial margins */
   max-width: 1200px; 
-  /* Centers the element horizontally, fluid vertical separation spacing */
   margin-inline: auto;
   margin-block-end: clamp(3rem, 8vw, 6rem);
   
@@ -37,12 +35,10 @@
   overflow: hidden;
   border-radius: 6px;
   
-  /* Hardcoded luxury fine-line espresso frame */
   border: 1px solid rgba(43, 37, 32, 0.1); 
   background-color: #13110f; 
   isolation: isolate;
   
-  /* Premium deep canvas drop shadow */
   box-shadow: 0 25px 50px -12px rgba(20, 18, 16, 0.15);
   
   will-change: transform, box-shadow, border-color;
@@ -52,23 +48,20 @@
     border-color 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Subtle, weighted lift interaction on hover */
 .project-hero-image:hover {
   transform: translateY(-3px);
-  border-color: rgba(223, 186, 137, 0.4); /* Illuminates border into champagne gold */
+  border-color: rgba(223, 186, 137, 0.4); 
   
   box-shadow: 
     0 35px 70px -15px rgba(20, 18, 16, 0.22),
-    0 0 40px -10px rgba(223, 186, 137, 0.12); /* Ambient gold backing glow */
+    0 0 40px -10px rgba(223, 186, 137, 0.12); 
 }
 
-/* Internal Lens Dynamics */
 .project-hero-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   
-  /* Focus Pull physics: Soft, moody entry state */
   filter: grayscale(5%) contrast(97%) blur(0.4px);
   transform: scale(1);
   will-change: transform, filter;
@@ -77,13 +70,11 @@
     filter 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Pulls the lens to crisp, high-fidelity definition on hover */
 .project-hero-image:hover img {
   transform: scale(1.02);
   filter: grayscale(0%) contrast(104%) blur(0px);
 }
 
-/* Ensures user cursor hides automatically if using a custom tracking pointer */
 .project-hero-image,
 .project-hero-image * {
   cursor: none !important;

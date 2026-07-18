@@ -1,8 +1,6 @@
-/* src/pages/Work/components/ProjectReel.css */
 
 .reel {
   position: relative;
-  /* Scales layout breathing room down gracefully on shrunken viewports */
   padding-bottom: clamp(6rem, 15vw, 13.75rem);
 }
 
@@ -44,7 +42,7 @@
 }
 
 .reel-header-meta {
-  text-align: end; /* Automatic multi-language alignment */
+  text-align: end; 
   line-height: 2;
   flex-shrink: 0;
 }
@@ -61,10 +59,10 @@
   aspect-ratio: 16/9;
   overflow: hidden;
   border-radius: 8px;
-  isolation: isolate; /* Localizes all internal stacking contexts */
+  isolation: isolate; 
 }
 
-/* 1. The Glowing Frame (Kept exactly as you designed, layered on top) */
+/* The Glowing Frame */
 .reel-hero-frame {
   position: absolute;
   inset-block: 0;
@@ -73,30 +71,29 @@
   border-radius: 8px;
   box-shadow: var(--shadow-lg);
   pointer-events: none;
-  z-index: 10; /* Boosted to sit cleanly over the moving parallax image */
+  z-index: 10; 
   transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
-/* Glow ignition on hover */
 .reel-hero:hover .reel-hero-frame {
   border-color: var(--border-glow);
   box-shadow: var(--shadow-xl);
 }
 
-/* 2. Parallax Wrapper (The structural cushion for vertical scroll) */
+/*  Parallax Wrapper */
 .reel-hero-parallax-wrapper {
   position: absolute;
-  inset-block: -60px; /* Oversized buffer room for the parallax shift */
+  inset-block: -60px;
   inset-inline: max(1rem, 3vw);
   width: calc(100% - (max(1rem, 3vw) * 2));
   height: calc(100% + 120px);
   will-change: transform;
   border-radius: 8px;
-  overflow: hidden; /* Contains the zoom matrix within the parallax boundaries */
+  overflow: hidden; 
   z-index: 1;
 }
 
-/* 3. The Image Asset (Handles the subtle Apple/Awwwards dolly zoom) */
+/* The Image Assets */
 .reel-hero-img {
   width: 100%;
   height: 100%;
@@ -111,7 +108,7 @@
   filter: var(--reel-img-filter-hover);
 }
 
-/* 4. Overlays & Hints */
+/* Overlays & Hints */
 .reel-hero-gradient {
   position: absolute;
   inset-block: 0;
@@ -154,7 +151,7 @@
     transform 0.35s var(--ease),
     border-color 0.3s;
   pointer-events: none;
-  z-index: 11; /* Sits above the glowing frame */
+  z-index: 11; 
 }
 
 .reel-hero:hover .reel-hero-hint {
@@ -193,22 +190,14 @@
 .reel-narrative-text {
   display: flex;
   flex-direction: column;
-  margin-right: 2rem; /* Space from the right */
+  margin-right: 2rem; 
   font-size: 1.05rem;
   font-weight: 300;
   line-height: 1.75;
   color: var(--text-2);
 }
 
-/* ── Specific Narrative Text Type Hooks (Edit these individually) ── */
 
-.reel-challenge-text {
-  /* Style specifically for your Challenge (Problem) text */
-}
-
-.reel-approach-text {
-  /* Style specifically for your Approach (Solution) text */
-}
 
 .reel-engineering-text {
   font-size: 1rem;
@@ -225,7 +214,7 @@
 
 .reel-section-caption {
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 4.5vw, 2.4rem); /* Scales smoothly across sizes */
+  font-size: clamp(1.65rem, 4.5vw, 2.4rem);
   font-weight: 300;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
@@ -274,15 +263,15 @@
   max-width: 850px;
 }
 
-/* ── Engineering / tech stack ──────────────────────────────────── */
+/* ── Engineering ──────────────────────────────────── */
 
 .reel-engineering {
   margin-bottom: clamp(5rem, 12vw, 11.25rem);
 }
 
 .reel-engineering-block {
-  max-width: 1020px; /* Increase this to your desired maximum desktop width */
-  width: 100%; /* Keeps it fluid on mobile devices */
+  max-width: 1020px; 
+  width: 100%; 
   margin-bottom: clamp(3rem, 5vw, 3rem);
 }
 
@@ -323,17 +312,17 @@
   background: var(--accent);
 }
 
-/* ── Editorial gallery ─────────────────────────────────────────── */
+
 
 /* ============================================================
-   CINEMATIC GALLERY GRID ENGINE
+   CINEMATIC reel-gallery
    ============================================================ */
 
 .reel-gallery {
   display: grid;
-  /* Clean responsive auto-fitting grids that preserve strict alignment dimensions */
+  
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
-  /* Fluid structural gap that opens up elegantly on larger screens */
+  
   gap: clamp(1.5rem, 4vw, 3rem); 
   margin: 0 auto clamp(4rem, 10vw, 8rem);
   max-width: 1150px;
@@ -343,14 +332,14 @@
 .reel-gallery-item {
   position: relative;
   overflow: hidden;
-  /* Deep obsidian/espresso canvas anchor preventing background flash while media loads */
+  
   background-color: #13110f; 
-  /* Ultra-fine espresso bounding outline */
+  
   border: 1px solid rgba(43, 37, 32, 0.08); 
   border-radius: 6px;
   aspect-ratio: 16 / 10;
   margin: 0;
-  isolation: isolate; /* Localizes and contains the internal vignette filtration layers */
+  isolation: isolate; 
   cursor: pointer;
   
   will-change: transform, box-shadow, border-color;
@@ -361,13 +350,13 @@
     cursor: none !important;
 }
 
-/* 1. Cinematic Lens Layer */
+/*  Cinematic Lens Layer */
 .reel-gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   
-  /* Focus Pull physics: Subtle baseline blur and desaturation for a premium mood */
+  /* Focus Pull physics */
   filter: grayscale(8%) contrast(96%);
   transform: scale(1);
   will-change: transform, filter;
@@ -376,12 +365,12 @@
     filter 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* 2. Integrated Optical Grading & Vignette Overlay */
+/* integrated Optical Grading*/
 .reel-gallery-item::after {
   content: '';
   position: absolute;
   inset: 0;
-  /* Compresses lighting harshness at the edges while injecting a soft, 195-deg gold color grade */
+  
   background: 
     radial-gradient(circle at 50% 50%, rgba(20, 18, 16, 0) 50%, rgba(20, 18, 16, 0.35) 100%),
     linear-gradient(195deg, rgba(223, 186, 137, 0.04) 0%, rgba(20, 18, 16, 0) 70%);
@@ -390,25 +379,25 @@
   transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* 3. Multi-Dimensional Hover Interaction States */
+/* Multi-Dimensional Hover  */
 .reel-gallery-item:hover {
-  /* Wireframe illuminates into a crisp champagne finish */
-  border-color: rgba(223, 186, 137, 0.35); 
-  transform: translateY(-3px); /* Snappy weightless liftoff */
   
-  /* Premium dual-layered drop shadow + ambient gold under-glow */
+  border-color: rgba(223, 186, 137, 0.35); 
+  transform: translateY(-3px); 
+  
+  /* Premium dual-layered drop shadow  */
   box-shadow: 
     0 15px 35px -10px rgba(20, 18, 16, 0.15),
     0 0 24px -6px rgba(223, 186, 137, 0.08);
 }
 
 .reel-gallery-item:hover img {
-  transform: scale(1.03); /* Balanced camera dolly-in zoom */
-  filter: grayscale(0%) contrast(104%) blur(0px); /* Pulls tack-sharp into focus */
+  transform: scale(1.03); 
+  filter: grayscale(0%) contrast(104%) blur(0px); 
 }
 
 .reel-gallery-item:hover::after {
-  opacity: 0.8; /* Dissolves lighting masks to let image color pop forward */
+  opacity: 0.8; 
 }
 
 /* ── Motion Accessibility Adjustments ── */
@@ -569,7 +558,7 @@
   }
 
   .reel-header-meta {
-    text-align: start; /* Flips alignment safely on layout stack */
+    text-align: start; 
   }
 
   .reel-gallery {

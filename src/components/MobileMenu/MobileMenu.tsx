@@ -61,7 +61,6 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
   const location = useLocation();
   const backdropRef = useRef<HTMLDivElement>(null);
 
-  // Fix: Automatically close the menu whenever the user successfully navigates to a new route
   useEffect(() => {
     if (isOpen) {
       onClose();
@@ -106,7 +105,7 @@ export default function MobileMenu({ items, isOpen, onClose }: Props) {
           <motion.div
             className="mobile-menu-sheet"
             variants={sheetVariants}
-            onClick={(e) => e.stopPropagation()} // Fix: Stop clicks inside the card from accidentally triggering backdrop close
+            onClick={(e) => e.stopPropagation()} 
           >
             {/* Header */}
             <div className="mobile-menu-header">

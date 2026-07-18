@@ -1,7 +1,4 @@
-/* ==========================================================================
-   ABOUT PAGE
-   This page combines the previous Home Hero + About sections
-   ========================================================================== */
+
 
 /* ==========================================================================
    HERO
@@ -175,7 +172,6 @@
 /* 1. Core Card Engine */
 .stat-card {
   position: relative;
-  /* Premium semi-translucent fine linen background */
   background: var(--stat-card-bg);
   border: 1px solid var(--stat-card-border);
   padding: clamp(18px, 2vw, 28px);
@@ -190,7 +186,6 @@
     transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* 2px top accent line anchoring each card's identity */
 .stat-card::before {
   content: "";
   position: absolute;
@@ -203,13 +198,11 @@
   transition: opacity 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* 2. Global Hover Physics */
 .stat-card:hover {
   background: var(--card-bg-hover);
   border-color: var(--card-border-hover);
   transform: translateY(-4px);
 
-  /* Dual-layered physical shadow and custom ambient gold glow */
   box-shadow:
     0 20px 40px -15px var(--stat-card-shadow),
     0 0 32px -4px var(--card-glow);
@@ -219,7 +212,6 @@
   opacity: 1;
 }
 
-/* 3. Pure Custom Tonal Configurations (Light, Beige, Gold) */
 
 .stat-card:nth-child(1) {
   --card-accent: var(--stat1-accent);

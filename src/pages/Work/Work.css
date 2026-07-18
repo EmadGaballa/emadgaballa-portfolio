@@ -1,4 +1,4 @@
-/* src/pages/Work/Work.css */
+
 
 .work-page {
   background: var(--bg);
@@ -8,7 +8,7 @@
 .work-page-header-wrap {
   padding-top: 14rem;
   padding-bottom: 2rem;
-  padding-inline: max(1.5rem, 5vw); /* Dynamic side padding */
+  padding-inline: max(1.5rem, 5vw); 
 }
 
 .work-page-header {
@@ -24,8 +24,7 @@
   padding-top: 120px;
 }
 
-/* Reserve breathing room on the side the film rail occupies, so chapter
-   content never runs underneath the fixed nav on wide viewports. */
+
 @media (min-width: 1101px) {
   .work-content {
     padding-right: 140px;

@@ -1,4 +1,3 @@
-// src/pages/Work/components/FilmRail.tsx
 import { motion, MotionValue, useSpring } from 'framer-motion';
 import './FilmRail.css';
 
@@ -15,8 +14,7 @@ interface Props {
 }
 
 export default function FilmRail({ items, activeIndex, progress, onNavigate }: Props) {
-  // Smooth the raw scroll progress so the film-strip line doesn't jitter
-  // frame-to-frame — it should feel like it's being pulled, not ticking.
+ 
   const smoothProgress = useSpring(progress, {
     stiffness: 90,
     damping: 24,

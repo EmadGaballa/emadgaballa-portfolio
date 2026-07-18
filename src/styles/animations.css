@@ -104,7 +104,6 @@
   animation: scaleIn 0.6s var(--ease-out) forwards;
 }
 
-/* ─── Reveal on scroll (JS-triggered) ─── */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -160,7 +159,7 @@
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
 
-/* ─── Theme transition on all themed elements ─── */
+
 * {
   transition: background-color var(--transition-theme),
               border-color var(--transition-theme),

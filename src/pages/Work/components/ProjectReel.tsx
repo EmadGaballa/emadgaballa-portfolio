@@ -38,9 +38,9 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
   const ps = (i: number, key: string) =>
     t(`projects.${slug}.screenshots.${i}.${key}`, { defaultValue: "" });
 
-  // Parallax + clip-reveal for the hero image, driven by this reel's own
-  // scroll position rather than the page's, so each chapter reveals on its
-  // own terms as it enters the viewport.
+  // Parallax + clip-reveal 
+  // scroll position 
+ 
   const heroWrapRef = useScroll();
   const { scrollYProgress: heroProgress } = heroWrapRef;
 
@@ -93,7 +93,7 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
         className="reel-hero"
         initial="hidden"
         whileInView="visible"
-        whileHover="hover" // Fix: Let child nodes inherit parent hover state context safely
+        whileHover="hover" 
         viewport={{ once: true, margin: "-10% 0px" }}
         variants={{
           hidden: { clipPath: "inset(0 0 100% 0)" },
@@ -103,20 +103,20 @@ const ProjectReel = forwardRef<HTMLElement, Props>(function ProjectReel(
           },
         }}
       >
-        {/* Parallax Container: Solely dedicated to handle the vertical scroll vector */}
+        {/* Parallax Container*/}
         <motion.div className="reel-hero-parallax-wrapper" style={{ y: heroY }}>
-          {/* Image Asset: Solely dedicated to handle the pristine hover scale */}
+          {/* Image Asset*/}
           <motion.img
             src={project.heroImage}
             alt={project.title}
             loading="lazy"
             className="reel-hero-img"
             variants={{
-              hover: { scale: 1.03 }, // Subtle, high-end dolly zoom value
+              hover: { scale: 1.03 }, 
             }}
             transition={{
-              duration: 0.75, // Slow, elegant ease transition both in and out
-              ease: [0.25, 1, 0.5, 1], // Clean cinematic cubic-bezier curves
+              duration: 0.75, 
+              ease: [0.25, 1, 0.5, 1], 
             }}
           />
         </motion.div>

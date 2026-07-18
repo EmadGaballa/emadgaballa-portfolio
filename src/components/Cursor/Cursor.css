@@ -29,7 +29,6 @@ textarea,
   border-radius: 50%;
   pointer-events: none;
   will-change: transform, width, height;
-  /* Transform properties removed here; handed off entirely to React/Framer Engine */
 }
 
 .cursor-dot {

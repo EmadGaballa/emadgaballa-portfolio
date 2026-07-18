@@ -1,4 +1,3 @@
-/* src/pages/Work/components/FilmRail.css */
 
 .film-rail {
   position: fixed;
@@ -78,8 +77,7 @@
   transition: color 0.3s var(--ease);
 }
 
-/* Labels are always visible now — no hover-to-reveal — so the whole
-   project list is scannable and clickable at a glance. */
+
 .film-rail-label {
   font-family: var(--font-mono);
   font-size: 0.60rem;

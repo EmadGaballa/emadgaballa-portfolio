@@ -1,4 +1,3 @@
-// src/pages/Work/Work.tsx
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useReducedMotion, useScroll } from 'framer-motion';
@@ -9,7 +8,6 @@ import ProjectReel from './components/ProjectReel';
 import { projects } from '@/data/projects';
 import './Work.css';
 
-/** Converts a 1-based index into a roman numeral chapter mark (I, II, III…). */
 function toRoman(num: number): string {
   const table: [number, string][] = [
     [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
@@ -33,14 +31,12 @@ export default function Work() {
   const sectionRefs = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Overall read-through progress, driving the film rail's progress line.
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  // Scroll-spy: highlight whichever chapter currently owns the viewport's
-  // center band, so the rail always reflects "where you are in the story."
+
   useEffect(() => {
     const sections = sectionRefs.current.filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
